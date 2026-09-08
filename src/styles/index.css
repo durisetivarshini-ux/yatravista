@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  [data-theme="royal-sandstone"],
+  [data-theme="heritage"] {
+    --color-bg: #FAF7F2;
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-border: #E8E2D5;
+    --color-primary: #1C3B2B;        /* Deep Forest Green */
+    --color-primary-hover: #12281D;
+    --color-primary-light: #EBF2EC;
+    --color-accent: #C59A45;         /* Muted Gold */
+    --color-accent-light: #FBF4E4;
+    --color-text: #1E2522;           /* Deep Charcoal */
+    --color-text-muted: #57645D;
+    --color-text-subtle: #89968F;
+    --color-tag: #F0EDE4;
+    --color-nav: #162E22;
+    --shadow-color: rgba(28, 59, 43, 0.06);
+    --shadow-color-lg: rgba(28, 59, 43, 0.12);
+  }
+
+  [data-theme="kerala-rainforest"] {
+    --color-bg: #F3F7F4;
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-border: #D3E0D7;
+    --color-primary: #1B4332;        /* Deep Palm Green */
+    --color-primary-hover: #102B20;
+    --color-primary-light: #E8F0EA;
+    --color-accent: #B07D46;         /* Warm Teak & Spice Gold */
+    --color-accent-light: #F8F1EA;
+    --color-text: #17241C;
+    --color-text-muted: #4E6356;
+    --color-text-subtle: #7F9487;
+    --color-tag: #E5EDE7;
+    --color-nav: #122E22;
+    --shadow-color: rgba(27, 67, 50, 0.06);
+    --shadow-color-lg: rgba(27, 67, 50, 0.12);
+  }
+
+  [data-theme="varanasi-twilight"],
+  [data-theme="coastal"] {
+    --color-bg: #F5F6FA;
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-border: #D8DCE8;
+    --color-primary: #1E2A4A;        /* Twilight Indigo */
+    --color-primary-hover: #141C33;
+    --color-primary-light: #EBEFF8;
+    --color-accent: #D96B43;         /* Ganga Saffron / Sunset Coral */
+    --color-accent-light: #FDF0EB;
+    --color-text: #161D2E;
+    --color-text-muted: #505B73;
+    --color-text-subtle: #848EA6;
+    --color-tag: #EBF0F8;
+    --color-nav: #161F36;
+    --shadow-color: rgba(30, 42, 74, 0.07);
+    --shadow-color-lg: rgba(30, 42, 74, 0.14);
+  }
+
+  [data-theme="kashmir-mist"],
+  [data-theme="mountain"] {
+    --color-bg: #F0F4F8;
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-border: #D2DCE6;
+    --color-primary: #2C3E50;        /* Cedar Slate */
+    --color-primary-hover: #1A2633;
+    --color-primary-light: #E6EDF4;
+    --color-accent: #C86D1E;         /* Chinar Amber */
+    --color-accent-light: #FAF0E6;
+    --color-text: #19232D;
+    --color-text-muted: #536271;
+    --color-text-subtle: #8595A6;
+    --color-tag: #E4ECF4;
+    --color-nav: #1E2B38;
+    --shadow-color: rgba(44, 62, 80, 0.07);
+    --shadow-color-lg: rgba(44, 62, 80, 0.14);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  h1, h2, h3, h4, .font-editorial {
+    font-family: 'Playfair Display', Georgia, Cambria, serif;
+    letter-spacing: -0.015em;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-subtle);
+  }
+}
+
+/* Print styling for Trip Planner print-out */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .itinerary-print-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+}
