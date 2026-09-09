@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { 
   Sparkles, 
   MapPin, 
@@ -8,7 +9,9 @@ import {
   AlertCircle,
   Info,
   ShieldCheck,
-  Eye
+  Eye,
+  Calendar,
+  ArrowUpRight
 } from "lucide-react";
 import { experiences, experienceCategories } from "../data/experiences";
 import { destinations } from "../data/destinations";
@@ -16,6 +19,7 @@ import { useTrip } from "../context/TripContext";
 import { formatINR } from "../utils/currencyFormatter";
 import { Button } from "../components/ui/Button";
 import { Modal } from "../components/ui/Modal";
+import { BookingModal } from "../components/bookings/BookingModal";
 
 export function Experiences() {
   const { 
@@ -29,6 +33,7 @@ export function Experiences() {
   const [selectedDestination, setSelectedDestination] = useState("All");
   const [destinationMismatchModal, setDestinationMismatchModal] = useState(null);
   const [detailedExperience, setDetailedExperience] = useState(null);
+  const [bookingTarget, setBookingTarget] = useState(null);
 
   const filteredExperiences = useMemo(() => {
     return experiences.filter((exp) => {
@@ -67,13 +72,13 @@ export function Experiences() {
           Authentic Artisan & Cultural Experiences
         </h1>
         <p className="text-sm text-theme-text-muted max-w-2xl leading-relaxed">
-          Step inside generational craft studios, natural dye workshops, spice estates, and heritage music chambers. Every experience supports local grassroots practitioners.
+          Step inside generational craft studios, natural dye workshops, spice estates, and heritage music chambers. Every experience connects directly with local master practitioners.
         </p>
 
         <div className="p-3.5 rounded-xl bg-theme-surface border border-theme-border text-xs text-theme-text-muted flex items-start gap-2.5">
           <Info className="w-4 h-4 text-theme-accent shrink-0 mt-0.5" />
           <span>
-            <strong>Demonstrator Data Notice:</strong> Workshop names, sample rates, and schedules are illustrative curriculum representations designed for SIH prototype #26204. "Add to Trip" bundles the estimated workshop fee into your itinerary breakdown without financial processing.
+            <strong>Demonstrator Booking Scope:</strong> Workshop dates, sample rates, and schedules are designed for SIH prototype #26204. You can submit a demonstration booking request or bundle estimates into your smart trip itinerary.
           </span>
         </div>
       </div>
@@ -139,10 +144,10 @@ export function Experiences() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                className={`py-1.5 px-3 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
                   isActive
-                    ? "bg-theme-primary text-white shadow-xs"
-                    : "bg-theme-bg text-theme-text-muted hover:text-theme-text"
+                    ? "bg-theme-primary text-white font-semibold shadow-xs"
+                    : "bg-theme-bg text-theme-text-muted hover:text-theme-text hover:bg-theme-border"
                 }`}
               >
                 {cat}
@@ -153,18 +158,16 @@ export function Experiences() {
 
         {/* Destination Dropdown */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold uppercase tracking-wider text-theme-text-muted">
-            Destination:
-          </span>
+          <span className="text-xs font-medium text-theme-text-muted">Region:</span>
           <select
             value={selectedDestination}
             onChange={(e) => setSelectedDestination(e.target.value)}
-            className="px-3 py-1.5 rounded-xl bg-theme-bg border border-theme-border text-xs text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-primary cursor-pointer"
+            className="px-3 py-1.5 rounded-xl text-xs bg-theme-bg text-theme-text border border-theme-border focus:outline-none focus:ring-1 focus:ring-theme-primary"
           >
-            <option value="All">All Regions</option>
+            <option value="All">All Circuits</option>
             {destinations.map((d) => (
               <option key={d.slug} value={d.slug}>
-                {d.name}
+                {d.name} ({d.state})
               </option>
             ))}
           </select>
@@ -172,28 +175,47 @@ export function Experiences() {
 
       </div>
 
-      {/* Experiences Grid */}
+      {/* Grid of Experiences */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredExperiences.map((exp) => {
-          const isSelected = selectedExperiences.some((e) => e.id === exp.id);
+          const isSelected = selectedExperiences?.some((item) => item.id === exp.id);
           const destObj = destinations.find((d) => d.slug === exp.destinationSlug);
+
+          const bookableListing = {
+            id: exp.id,
+            provider_id: "usr-provider-01",
+            destination_slug: exp.destinationSlug,
+            category: "workshop",
+            title: exp.title,
+            tagline: exp.provider,
+            price: exp.pricePerPerson,
+            price_unit: "per_person",
+            capacity: 8,
+            address: `${destObj?.name || "Jaipur"}, ${destObj?.state || "India"}`,
+            description: exp.description,
+            image: exp.image,
+            cancellation_policy: "Free cancellation up to 24 hours prior to session."
+          };
 
           return (
             <article
               key={exp.id}
-              className="group flex flex-col bg-theme-surface rounded-2xl border border-theme-border overflow-hidden shadow-xs hover:shadow-card transition-all"
+              className={`group flex flex-col bg-theme-surface rounded-2xl border transition-all duration-300 hover:shadow-elevated overflow-hidden ${
+                isSelected ? "border-theme-primary ring-2 ring-theme-primary/20" : "border-theme-border"
+              }`}
             >
-              {/* Image Container */}
-              <div className="relative h-52 w-full overflow-hidden bg-theme-bg/60">
+              {/* Image & Badges */}
+              <div className="relative h-56 w-full overflow-hidden bg-theme-bg/60">
                 <img
                   src={exp.image}
                   alt={exp.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
 
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-semibold uppercase tracking-wider bg-white/90 text-theme-primary backdrop-blur-md">
+                {/* Category Pill */}
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold bg-white/90 text-theme-primary backdrop-blur-md shadow-xs">
                   {exp.category}
                 </div>
 
@@ -243,7 +265,7 @@ export function Experiences() {
                 {/* Footer and Controls */}
                 <div className="pt-4 border-t border-theme-border/60 space-y-3">
                   
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center justify-between gap-2">
                     <div>
                       <span className="text-[10px] uppercase tracking-wider text-theme-text-subtle block font-medium">
                         Tariff
@@ -254,33 +276,31 @@ export function Experiences() {
                       <span className="text-[10px] text-theme-text-muted block -mt-0.5">/ person</span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setDetailedExperience(exp)}
-                        className="p-2 rounded-xl border border-theme-border text-theme-text-muted hover:text-theme-text hover:bg-theme-bg transition-colors"
-                        title="View full experience specifications & etiquette"
+                    <div className="flex items-center gap-1.5">
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => setBookingTarget(bookableListing)}
                       >
-                        <Eye className="w-4 h-4" />
-                      </button>
+                        Book Slot
+                      </Button>
 
                       {isSelected ? (
-                        <Button
+                        <button
+                          type="button"
                           onClick={() => removeExperienceFromTrip(exp.id)}
-                          variant="secondary"
-                          size="sm"
-                          className="border-rose-200 text-rose-700 hover:bg-rose-50"
+                          className="px-2.5 py-1.5 rounded-xl border border-rose-200 text-rose-700 hover:bg-rose-50 text-xs font-semibold transition-colors"
                         >
-                          Remove from Trip
-                        </Button>
+                          In Plan ✓
+                        </button>
                       ) : (
-                        <Button
+                        <button
+                          type="button"
                           onClick={() => handleAddExperience(exp)}
-                          variant="primary"
-                          size="sm"
+                          className="px-2.5 py-1.5 rounded-xl border border-theme-border text-theme-text hover:bg-theme-bg text-xs font-medium transition-colors"
                         >
-                          Add to Trip
-                        </Button>
+                          + Planner
+                        </button>
                       )}
                     </div>
                   </div>
@@ -293,123 +313,53 @@ export function Experiences() {
         })}
       </div>
 
-      {/* Experience Details Modal */}
-      {detailedExperience && (
-        <Modal
-          isOpen={true}
-          onClose={() => setDetailedExperience(null)}
-          title={detailedExperience.title}
-          maxWidth="max-w-2xl"
-        >
-          <div className="space-y-5 text-xs text-theme-text-muted">
-            <div className="relative h-56 rounded-2xl overflow-hidden bg-theme-bg">
-              <img
-                src={detailedExperience.image}
-                alt={detailedExperience.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 text-white">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/20 backdrop-blur-md">
-                  {detailedExperience.category}
-                </span>
-                <h4 className="text-xl font-serif font-bold mt-1 text-white">
-                  {detailedExperience.title}
-                </h4>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h5 className="text-sm font-serif font-bold text-theme-text">What You Will Experience</h5>
-              <p className="leading-relaxed font-sans">{detailedExperience.description}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-theme-bg/60 border border-theme-border/60">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-theme-text-subtle block">Host Community</span>
-                <strong className="text-theme-text text-xs">{detailedExperience.provider}</strong>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold text-theme-text-subtle block">Duration & Timing</span>
-                <strong className="text-theme-text text-xs">{detailedExperience.duration}</strong>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold text-theme-text-subtle block">Tariff Structure</span>
-                <strong className="text-theme-primary text-xs font-serif">{formatINR(detailedExperience.pricePerPerson)} / person</strong>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold text-theme-text-subtle block">Destination Circuit</span>
-                <strong className="text-theme-text text-xs capitalize">{detailedExperience.destinationSlug}</strong>
-              </div>
-            </div>
-
-            {/* Cultural Etiquette */}
-            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-400/30 text-amber-950 space-y-1">
-              <div className="flex items-center gap-1.5 font-bold text-amber-900 text-xs">
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-                <span>Cultural Etiquette & Respectful Conduct</span>
-              </div>
-              <p className="text-[11px] text-amber-800 leading-relaxed">
-                Please remove footwear before stepping onto weaving platforms and sacred chambers. Always ask before photographing artisan elders. Direct fair-trade gratuities are welcome.
-              </p>
-            </div>
-
-            <div className="flex justify-end gap-2 pt-2 border-t border-theme-border">
-              <Button onClick={() => setDetailedExperience(null)} variant="secondary" size="sm">
-                Close
-              </Button>
-              <Button
-                onClick={() => {
-                  handleAddExperience(detailedExperience);
-                  setDetailedExperience(null);
-                }}
-                variant="primary"
-                size="sm"
-              >
-                Add to Trip Planner
-              </Button>
-            </div>
-          </div>
-        </Modal>
+      {/* Booking Modal */}
+      {bookingTarget && (
+        <BookingModal
+          listing={bookingTarget}
+          isOpen={!!bookingTarget}
+          onClose={() => setBookingTarget(null)}
+        />
       )}
 
-      {/* Destination Mismatch Clarification Modal */}
+      {/* Destination Mismatch Modal */}
       {destinationMismatchModal && (
         <Modal
           isOpen={true}
           onClose={() => setDestinationMismatchModal(null)}
-          title="Destination Alignment Note"
+          title="Circuit Mismatch Warning"
           maxWidth="max-w-md"
         >
-          <div className="space-y-4 text-xs text-theme-text-muted leading-relaxed">
-            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-400/30 text-amber-900 flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-              <span>
-                You currently have a selected stay in <strong>{destinationMismatchModal.currentDestination}</strong>, but this experience takes place in <strong>{destinationMismatchModal.newDestination}</strong>.
-              </span>
+          <div className="space-y-4 text-xs">
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 flex items-start gap-2.5">
+              <AlertCircle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block font-bold">Different Geographical Location</strong>
+                Your selected stay is in <strong>{destinationMismatchModal.currentDestination}</strong>, but this experience takes place in <strong>{destinationMismatchModal.newDestination}</strong>.
+              </div>
             </div>
 
-            <p>
-              Would you like to bundle this experience with your trip?
+            <p className="text-theme-text-muted">
+              Adding this activity will create an itinerary spanning across multiple circuits. Do you want to proceed and add it to your travel plan?
             </p>
 
-            <div className="pt-3 border-t border-theme-border flex flex-col sm:flex-row justify-end gap-2">
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-theme-border">
               <Button
-                onClick={() => setDestinationMismatchModal(null)}
                 variant="secondary"
                 size="sm"
+                onClick={() => setDestinationMismatchModal(null)}
               >
-                Cancel
+                Keep Existing Circuit
               </Button>
               <Button
+                variant="primary"
+                size="sm"
                 onClick={() => {
                   addExperienceToTrip(destinationMismatchModal.experience);
                   setDestinationMismatchModal(null);
                 }}
-                variant="primary"
-                size="sm"
               >
-                Add Experience
+                Add Anyway
               </Button>
             </div>
           </div>

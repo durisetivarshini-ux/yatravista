@@ -1,4 +1,30 @@
+// Comprehensive 60+ Destination Dataset covering all 28 Indian States & 8 Union Territories
+
+export const regions = ["All", "North", "South", "East", "West", "Central", "Northeast", "Islands"];
+
+export const travelInterestOptions = [
+  "All",
+  "Heritage",
+  "Culture",
+  "Food",
+  "Nature",
+  "Mountains",
+  "Beach",
+  "Spirituality",
+  "Art & Craft",
+  "Wildlife",
+  "Architecture",
+  "Tea",
+  "Coffee",
+  "Waterfalls",
+  "Desert",
+  "Lakes",
+  "Backwaters",
+  "Caves"
+];
+
 export const destinations = [
+  // --- NORTH INDIA ---
   {
     id: "jaipur",
     slug: "jaipur",
@@ -7,329 +33,23 @@ export const destinations = [
     region: "North",
     tagline: "The Timeless Splendour of the Pink City",
     shortDescription: "Majestic forts, terracotta facades, vibrant bazaars, and opulent royal history nestled in the Aravalli hills.",
-    fullDescription: "Jaipur, the fabled capital of Rajasthan founded in 1727 by Maharaja Sawai Jai Singh II, is an UNESCO World Heritage city renowned for its grid-planned terracotta architecture, astronomical observatory, and centuries-old artisan traditions. From the sunrise views over Amber Fort to fragrant kachoris in Johari Bazaar, Jaipur effortlessly fuses living heritage with contemporary Rajasthani hospitality.",
-    heroImage: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1600&q=80",
+    fullDescription: "Jaipur, the UNESCO World Heritage capital of Rajasthan founded in 1727 by Maharaja Sawai Jai Singh II, is celebrated for its grid-planned architecture, astrological observatory, and living artisan quarters.",
+    heroImage: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1603262110263-fb010d6e75dc?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80"
     ],
     travelInterests: ["Culture", "Heritage", "Food", "Architecture", "Art & Craft"],
     suggestedDuration: "3 - 4 Days",
-    dailyBudgetEstimate: 3800, // INR per person estimate
-    bestSeason: "October to March",
+    dailyBudgetEstimate: 3800,
+    bestSeason: "October to March (Rajasthan Tourism Guide)",
     idealFor: "Heritage lovers, photographers, foodies, culture seekers",
     attractions: [
-      {
-        id: "jpr-amber",
-        name: "Amber Palace & Sheesh Mahal",
-        slot: "morning",
-        category: "Heritage",
-        duration: "3 hours",
-        cost: 500,
-        description: "Explore the intricate mirror work of Sheesh Mahal and hilltop ramparts overlooking Maota Lake.",
-        tip: "Arrive early by 8:30 AM to beat the mid-day heat and tour groups."
-      },
-      {
-        id: "jpr-hawa",
-        name: "Hawa Mahal & Old City Street Walk",
-        slot: "afternoon",
-        category: "Architecture",
-        duration: "2 hours",
-        cost: 200,
-        description: "Marvel at the 953 honeycombed sandstone casements built for royal court women to view street festivities.",
-        tip: "Visit the rooftop cafes opposite Hawa Mahal for breathtaking symmetrical perspectives."
-      },
-      {
-        id: "jpr-chokhi",
-        name: "Nahargarh Sunset & Traditional Rajasthani Thali",
-        slot: "evening",
-        category: "Food",
-        duration: "3 hours",
-        cost: 750,
-        description: "Panoramic sunset over the entire pink grid followed by authentic Dal Baati Churma and folk music.",
-        tip: "Take a licensed cab to Nahargarh summit before 5:30 PM."
-      },
-      {
-        id: "jpr-jantar",
-        name: "Jantar Mantar Astronomical Observatory",
-        slot: "morning",
-        category: "Culture",
-        duration: "1.5 hours",
-        cost: 200,
-        description: "World's largest stone sundial and precision 18th-century instruments measuring cosmic coordinates.",
-        tip: "Engage an ASI-licensed guide to decipher the ingenious sundial angles."
-      },
-      {
-        id: "jpr-bazaar",
-        name: "Johari & Bapu Bazaar Artisan Walk",
-        slot: "afternoon",
-        category: "Art & Craft",
-        duration: "2.5 hours",
-        cost: 150,
-        description: "Discover lac bangles, hand-block Bagru printing, blue pottery, and silver filigree in bustling lanes.",
-        tip: "Support traditional family-owned workshops in the old walled lanes."
-      },
-      {
-        id: "jpr-albert",
-        name: "Albert Hall Museum Evening Illumination",
-        slot: "evening",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 300,
-        description: "Indo-Saracenic museum housing exquisite miniature paintings, illuminated gorgeously with pigeons resting at dusk.",
-        tip: "The facade light show begins right around 6:45 PM."
-      }
-    ]
-  },
-  {
-    id: "goa",
-    slug: "goa",
-    name: "Goa",
-    state: "Goa",
-    region: "West",
-    tagline: "Sunkissed Coastlines, Portuguese Heritage & Serene Backwaters",
-    shortDescription: "Golden sand beaches, pastel Latin quarters, spice plantations, and slow-paced susegad living.",
-    fullDescription: "Beyond the party stereotypes, Goa is a rich tapestry of Indo-Portuguese history, lush Western Ghats hinterlands, artisanal bakeries, and quiet riverine villages. From Fontainhas' vibrant azulejo tiles in Panaji to quiet southern coves like Agonda and organic spice groves in Ponda, Goa offers peaceful coastal rejuvenation.",
-    heroImage: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1587922546307-776227941871?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+      { name: "Amber Palace & Sheesh Mahal", category: "Heritage", cost: 500, duration: "3 hours" },
+      { name: "Hawa Mahal & Old City Street Walk", category: "Architecture", cost: 200, duration: "2 hours" },
+      { name: "Jantar Mantar Observatory", category: "Culture", cost: 200, duration: "1.5 hours" }
     ],
-    travelInterests: ["Beaches", "Relaxation", "Food", "Culture", "Nature"],
-    suggestedDuration: "4 - 5 Days",
-    dailyBudgetEstimate: 4200,
-    bestSeason: "November to March",
-    idealFor: "Beach lovers, heritage walkers, slow travellers, seafood connoisseurs",
-    attractions: [
-      {
-        id: "goa-fontainhas",
-        name: "Fontainhas Latin Quarter Heritage Walk",
-        slot: "morning",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 250,
-        description: "Wander through Portuguese-era yellow and cobalt villas, traditional bakeries, and quaint art galleries.",
-        tip: "Sample fresh poi bread and bebinca at a heritage bakery on 31st January Road."
-      },
-      {
-        id: "goa-spice",
-        name: "Sahakari Organic Spice Plantation & Lunch",
-        slot: "afternoon",
-        category: "Nature",
-        duration: "3.5 hours",
-        cost: 650,
-        description: "Guided botany tour learning about cardamom, vanilla, and peri-peri chillies followed by a traditional buffet on banana leaves.",
-        tip: "Try the lemongrass herbal tea served upon welcome."
-      },
-      {
-        id: "goa-sunset-cove",
-        name: "Sunset Kayaking in Sal Backwaters",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2.5 hours",
-        cost: 800,
-        description: "Glide silently through mangrove bird corridors as the sun dips into the Arabian Sea horizon.",
-        tip: "Wear water-resistant footwear and carry a waterproof pouch for phones."
-      },
-      {
-        id: "goa-churches",
-        name: "Basilica of Bom Jesus & Old Goa Monuments",
-        slot: "morning",
-        category: "Heritage",
-        duration: "2.5 hours",
-        cost: 100,
-        description: "UNESCO baroque architecture holding the sacred relics of St. Francis Xavier.",
-        tip: "Modest dress is required inside the active basilica."
-      },
-      {
-        id: "goa-fisheries",
-        name: "Assagao Artisanal Food Tour",
-        slot: "afternoon",
-        category: "Food",
-        duration: "2.5 hours",
-        cost: 700,
-        description: "Taste Saraswat fish curry, kokum solkadhi, choris pao, and artisanal coconut-feni infusions.",
-        tip: "Come hungry; the portions are generous."
-      },
-      {
-        id: "goa-cabo",
-        name: "Cabo de Rama Cliff Walk & Golden Hour",
-        slot: "evening",
-        category: "Nature",
-        duration: "2 hours",
-        cost: 50,
-        description: "Dramatic sea cliffs overlooking secluded turquoise waters and the ruins of an ancient feudal fort.",
-        tip: "Pack light windbreakers as evening sea breezes can be brisk."
-      }
-    ]
-  },
-  {
-    id: "munnar",
-    slug: "munnar",
-    name: "Munnar",
-    state: "Kerala",
-    region: "South",
-    tagline: "Rolling Emerald Tea Hills & Misty Western Ghats",
-    shortDescription: "Endless carpet of tea gardens, cool mountain air, endangered Nilgiri Tahr, and fragrant eucalyptus trails.",
-    fullDescription: "Perched at 1,600 metres above sea level at the confluence of three mountain streams (Mudhirapuzha, Nallathanni, and Kundaly), Munnar is the green jewel of God's Own Country. Its velvety hills are laced with historic British-era tea estates, cascading waterfalls, spice gardens, and the pristine wilderness of Eravikulam National Park.",
-    heroImage: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-    ],
-    travelInterests: ["Nature", "Relaxation", "Adventure", "Culture"],
-    suggestedDuration: "3 - 4 Days",
-    dailyBudgetEstimate: 3400,
-    bestSeason: "September to May",
-    idealFor: "Nature enthusiasts, trekkers, tea aficionados, peaceful retreats",
-    attractions: [
-      {
-        id: "mnr-eravikulam",
-        name: "Eravikulam National Park & Anamudi Views",
-        slot: "morning",
-        category: "Nature",
-        duration: "3 hours",
-        cost: 250,
-        description: "Walk the high-altitude shola grasslands home to the friendly Nilgiri Tahr and wild mountain flora.",
-        tip: "Book early forest safari tokens online to avoid queue delays."
-      },
-      {
-        id: "mnr-tea-museum",
-        name: "Lockhart Heritage Tea Factory & Tasting",
-        slot: "afternoon",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 300,
-        description: "Witness the orthodox rolling and drying process followed by a master tea sommelier cupping session.",
-        tip: "Buy single-estate orthodox black tea directly from the factory outlet."
-      },
-      {
-        id: "mnr-mattupetty",
-        name: "Mattupetty Lake & Echo Point Nature Walk",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2.5 hours",
-        cost: 150,
-        description: "Tranquil water reservoir surrounded by mist-draped tea gardens and grazing wild elephants in the distance.",
-        tip: "Enjoy roasted spiced corn from local tribal vendors near the dam."
-      },
-      {
-        id: "mnr-chokramudi",
-        name: "Chokramudi Peak Sunrise Trek",
-        slot: "morning",
-        category: "Adventure",
-        duration: "4 hours",
-        cost: 600,
-        description: "Moderate guided trek offering breathtaking 360-degree panoramas of low-lying clouds and valleys.",
-        tip: "Wear sturdy hiking shoes with decent wet grip."
-      },
-      {
-        id: "mnr-marayoor",
-        name: "Marayoor Sandalwood Forests & Dolmens",
-        slot: "afternoon",
-        category: "Heritage",
-        duration: "3 hours",
-        cost: 200,
-        description: "Ancient megalithic burial chambers (Muniyaras) and naturally regenerating sandalwood groves.",
-        tip: "Pick up pure Marayoor jaggery handcrafted by local sugarcane farmers."
-      },
-      {
-        id: "mnr-kalaripayattu",
-        name: "Punarjani Traditional Kathakali & Martial Arts",
-        slot: "evening",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 400,
-        description: "Ancient Indian martial art (Kalaripayattu) and vivid facial expressions of classical Kathakali dance.",
-        tip: "Arrive 30 minutes before showtime to watch the elaborate natural face makeup application."
-      }
-    ]
-  },
-  {
-    id: "varanasi",
-    slug: "varanasi",
-    name: "Varanasi",
-    state: "Uttar Pradesh",
-    region: "North",
-    tagline: "The Spiritual Heartbeat of the Eternal River",
-    shortDescription: "Ancient riverside ghats, devotional chanting, Ganga Aarti, centuries-old silk weaving, and vibrant alleyways.",
-    fullDescription: "Mark Twain remarked that Varanasi is older than history, older than tradition, older even than legend. One of the world's oldest continuously inhabited cities, Kashi pulsates with cosmic energy along the sacred banks of the Ganges. Pilgrims, philosophers, and travelers have gathered here for millennia to seek enlightenment, celebrate life, and experience profound cultural devotion.",
-    heroImage: "https://images.unsplash.com/photo-1561359313-0639aad49ca6?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1561359313-0639aad49ca6?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=800&q=80"
-    ],
-    travelInterests: ["Spiritual", "Culture", "Heritage", "Food", "Art & Craft"],
-    suggestedDuration: "2 - 3 Days",
-    dailyBudgetEstimate: 2800,
-    bestSeason: "October to March",
-    idealFor: "Spiritual seekers, photographers, historians, textile lovers",
-    attractions: [
-      {
-        id: "vns-subah",
-        name: "Subah-e-Banaras Dawn Boat Ride",
-        slot: "morning",
-        category: "Spiritual",
-        duration: "2.5 hours",
-        cost: 450,
-        description: "Row gently from Assi Ghat to Manikarnika Ghat as morning prayers, sitar recitals, and temple bells wake the river.",
-        tip: "Be at Assi Ghat by 5:15 AM for the pre-dawn classical raga performance."
-      },
-      {
-        id: "vns-sarnath",
-        name: "Sarnath Deer Park & Dhamek Stupa",
-        slot: "afternoon",
-        category: "Heritage",
-        duration: "3 hours",
-        cost: 200,
-        description: "The hallowed site where Lord Buddha preached his first sermon after attaining enlightenment, plus Ashoka Lion Capital museum.",
-        tip: "The archaeological museum closes on Fridays, so plan accordingly."
-      },
-      {
-        id: "vns-dashashwamedh",
-        name: "Dashashwamedh Ghat Grand Evening Aarti",
-        slot: "evening",
-        category: "Spiritual",
-        duration: "2 hours",
-        cost: 100,
-        description: "Synchronized brass lamps, conch shells, incense plumes, and sacred river rituals performed by young Vedic priests.",
-        tip: "Watch from a wooden boat moored right in front of the steps for the best unobstructed view."
-      },
-      {
-        id: "vns-vishwanath",
-        name: "Kashi Vishwanath Corridor & Old Gali Exploration",
-        slot: "morning",
-        category: "Heritage",
-        duration: "2 hours",
-        cost: 100,
-        description: "Walk the golden-spired jyotirlinga shrine precinct and wander narrow medieval galis filled with brass shops.",
-        tip: "Electronic devices must be deposited in official lockers outside the temple."
-      },
-      {
-        id: "vns-kachori",
-        name: "Varanasi Food Trail: Malaiyyo & Kachori Gali",
-        slot: "afternoon",
-        category: "Food",
-        duration: "2 hours",
-        cost: 250,
-        description: "Savour crispy hing kachoris with aloo sabzi, frothy saffron Malaiyyo (winter delicacy), and creamy Banarasi paan.",
-        tip: "Try Ram Bhandar before 11:30 AM as their fresh batches sell out quickly."
-      },
-      {
-        id: "vns-weaver",
-        name: "Madanpura Banarasi Silk Weaving Guild",
-        slot: "evening",
-        category: "Art & Craft",
-        duration: "2 hours",
-        cost: 150,
-        description: "Watch master weavers operate traditional jacquard handlooms weaving pure zari silk sarees.",
-        tip: "Purchasing directly supports generational weaver families without middleman margins."
-      }
-    ]
+    coordinates: { lat: 26.9124, lng: 75.7873 }
   },
   {
     id: "udaipur",
@@ -338,81 +58,638 @@ export const destinations = [
     state: "Rajasthan",
     region: "North",
     tagline: "The City of Lakes, Marble Palaces & Royal Romance",
-    shortDescription: "Whitewashed lake palaces, mirrored courtyards, serene boat rides, and Mewar royal pride.",
-    fullDescription: "Often celebrated as the Venice of the East, Udaipur sits wrapped around azure Lake Pichola and Fateh Sagar against the backdrop of the undulating Aravalli range. Founded in 1559 by Maharana Udai Singh II, the city is a testament to Mewar chivalry, romantic lake architecture, intricate miniature art, and vibrant folk celebrations.",
-    heroImage: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=1600&q=80",
+    shortDescription: "Gleaming white palaces mirrored on tranquil waters, surrounded by green Aravalli ridgelines.",
+    fullDescription: "Founded in 1559 by Maharana Udai Singh II, Udaipur is the crown jewel of Mewar with its labyrinthine City Palace, Lake Pichola ghats, and romantic boat cruises.",
+    heroImage: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1588096344356-9a2c31e9e03d?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80"
     ],
-    travelInterests: ["Heritage", "Culture", "Relaxation", "Architecture", "Food"],
+    travelInterests: ["Heritage", "Romance", "Lakes", "Art & Craft"],
     suggestedDuration: "3 - 4 Days",
-    dailyBudgetEstimate: 4500,
+    dailyBudgetEstimate: 4200,
     bestSeason: "September to March",
-    idealFor: "Romance, heritage lovers, architecture enthusiasts, slow explorers",
+    idealFor: "Couples, heritage enthusiasts, luxury travellers",
     attractions: [
-      {
-        id: "udp-citypalace",
-        name: "City Palace Complex & Crystal Gallery",
-        slot: "morning",
-        category: "Heritage",
-        duration: "3 hours",
-        cost: 400,
-        description: "Rajasthan's largest palace complex, featuring Mor Chowk's peacock glass mosaics and royal armouries.",
-        tip: "Enter before 10 AM to take peaceful photos in the inner courtyards."
-      },
-      {
-        id: "udp-jagdish",
-        name: "Jagdish Temple & Gangaur Ghat Walk",
-        slot: "afternoon",
-        category: "Architecture",
-        duration: "1.5 hours",
-        cost: 50,
-        description: "1651 carved stone temple dedicated to Lord Vishnu and steps where locals feed fish in the quiet waters.",
-        tip: "Notice the intricately carved elephant and horse friezes adorning the temple plinth."
-      },
-      {
-        id: "udp-pichola",
-        name: "Lake Pichola Sunset Cruise to Jagmandir",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2 hours",
-        cost: 550,
-        description: "Cruise past the floating Lake Palace (Taj Lake Palace) as evening golden light bathes the City Palace facade.",
-        tip: "Pre-book the 5:00 PM sunset departure from Rameshwar Ghat."
-      },
-      {
-        id: "udp-saheliyon",
-        name: "Saheliyon-ki-Bari & Vintage Car Museum",
-        slot: "morning",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 200,
-        description: "Ornamental royal garden with marble fountains, lotus pools, and the Maharana's historic Rolls Royce collection.",
-        tip: "Fountains run on pure gravity without mechanical pumps."
-      },
-      {
-        id: "udp-bagore",
-        name: "Dharohar Folk Dance at Bagore-ki-Haveli",
-        slot: "evening",
-        category: "Culture",
-        duration: "1.5 hours",
-        cost: 250,
-        description: "Electrifying performance of Bhavai dancers balancing 7 to 10 earthen pots on their heads while dancing on glass.",
-        tip: "Queues for evening seats start around 6:15 PM at the haveli entrance."
-      },
-      {
-        id: "udp-monsoon",
-        name: "Sajjangarh Monsoon Palace Viewpoint",
-        slot: "afternoon",
-        category: "Nature",
-        duration: "2.5 hours",
-        cost: 200,
-        description: "High mountain sanctuary built to track monsoon clouds, offering commanding panoramic views of the entire valley.",
-        tip: "Take the shared eco-shuttle up the winding hill."
-      }
-    ]
+      { name: "City Palace Complex", category: "Heritage", cost: 400, duration: "3.5 hours" },
+      { name: "Lake Pichola Sunset Boat Cruise", category: "Nature", cost: 500, duration: "1.5 hours" },
+      { name: "Saheliyon-ki-Bari Gardens", category: "History", cost: 100, duration: "1 hour" }
+    ],
+    coordinates: { lat: 24.5854, lng: 73.7125 }
+  },
+  {
+    id: "jodhpur",
+    slug: "jodhpur",
+    name: "Jodhpur",
+    state: "Rajasthan",
+    region: "North",
+    tagline: "The Sun City & The Mighty Blue Fortress",
+    shortDescription: "Indigo-painted houses sprawling beneath the towering ramparts of Mehrangarh Fort.",
+    fullDescription: "Jodhpur stands at the edge of the Thar Desert, famed for its indigo alleys, historic stepwells like Toorji Ka Jhalra, and royal cenotaphs of Jaswant Thada.",
+    heroImage: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1568454537842-d933259bb258?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Culture", "Photography", "Food"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 3200,
+    bestSeason: "October to March",
+    idealFor: "History buffs, photographers, food explorers",
+    attractions: [
+      { name: "Mehrangarh Fort & Museum", category: "Heritage", cost: 600, duration: "3 hours" },
+      { name: "Toorji Ka Jhalra Stepwell", category: "Architecture", cost: 0, duration: "1 hour" },
+      { name: "Jaswant Thada Cenotaphs", category: "History", cost: 100, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 26.2389, lng: 73.0243 }
+  },
+  {
+    id: "jaisalmer",
+    slug: "jaisalmer",
+    name: "Jaisalmer",
+    state: "Rajasthan",
+    region: "North",
+    tagline: "The Golden City of Thar Sandstone",
+    shortDescription: "A living golden fort rising from the sand dunes, intricate havelis, and desert stargazing.",
+    fullDescription: "Jaisalmer's golden yellow sandstone fort houses a vibrant living community, Jain temples with exquisite carvings, and traditional Rajasthani folk music camps.",
+    heroImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Desert", "Heritage", "Art & Craft", "Stargazing"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3400,
+    bestSeason: "November to February",
+    idealFor: "Adventure travellers, desert lovers, history buffs",
+    attractions: [
+      { name: "Jaisalmer Living Fort (Sonar Qila)", category: "Heritage", cost: 250, duration: "3 hours" },
+      { name: "Patwon Ki Haveli", category: "Architecture", cost: 150, duration: "1.5 hours" },
+      { name: "Sam Sand Dunes Sunset & Folk Music", category: "Desert", cost: 750, duration: "4 hours" }
+    ],
+    coordinates: { lat: 26.9157, lng: 70.9083 }
+  },
+  {
+    id: "agra",
+    slug: "agra",
+    name: "Agra",
+    state: "Uttar Pradesh",
+    region: "North",
+    tagline: "The Monument of Eternal Love & Mughal Splendor",
+    shortDescription: "Home to the immortal white marble Taj Mahal, red sandstone Agra Fort, and Fatehpur Sikri.",
+    fullDescription: "Agra served as the imperial Mughal capital for centuries. Today, visitors marvel at the sublime proportions of the Taj Mahal, the riverside gardens of Mehtab Bagh, and royal courtyards of Agra Fort.",
+    heroImage: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Architecture", "History", "Food"],
+    suggestedDuration: "2 Days",
+    dailyBudgetEstimate: 3200,
+    bestSeason: "October to March",
+    idealFor: "First-time visitors to India, architecture lovers",
+    attractions: [
+      { name: "Taj Mahal at Sunrise", category: "Heritage", cost: 250, duration: "3 hours" },
+      { name: "Agra Red Fort", category: "History", cost: 350, duration: "2 hours" },
+      { name: "Mehtab Bagh Sunset Viewpoint", category: "Nature", cost: 100, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 27.1767, lng: 78.0081 }
+  },
+  {
+    id: "varanasi",
+    slug: "varanasi",
+    name: "Varanasi",
+    state: "Uttar Pradesh",
+    region: "North",
+    tagline: "The Spiritual Heartbeat of the Eternal Ganga",
+    shortDescription: "Ancient stone ghats, mesmerizing evening Ganga Aarti, timeless silk weaving, and deep spiritual heritage.",
+    fullDescription: "One of the world's oldest continually inhabited cities, Varanasi is the spiritual core of India. Life, philosophy, music, and art unfold along its 84 holy stone ghats.",
+    heroImage: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Spirituality", "Culture", "Art & Craft", "Food", "Photography"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 2900,
+    bestSeason: "October to March",
+    idealFor: "Spiritual seekers, culture enthusiasts, photographers",
+    attractions: [
+      { name: "Dashashwamedh Ghat Evening Ganga Aarti", category: "Spirituality", cost: 0, duration: "2 hours" },
+      { name: "Sunrise Rowing Boat on the Ganges", category: "Culture", cost: 400, duration: "2 hours" },
+      { name: "Sarnath Buddhist Sacred Ruins", category: "Heritage", cost: 150, duration: "2.5 hours" }
+    ],
+    coordinates: { lat: 25.3176, lng: 82.9739 }
+  },
+  {
+    id: "delhi",
+    slug: "delhi",
+    name: "Delhi",
+    state: "Delhi (NCT)",
+    region: "North",
+    tagline: "The Epic Crossroads of Empires & Modern Vibrancy",
+    shortDescription: "Centuries of dynasties preserved in Humayun's Tomb, Red Fort, Qutub Minar, and lively Chandni Chowk.",
+    fullDescription: "India's capital seamlessly juxtaposes historic monuments like Humayun's Tomb and Qutub Minar with bustling street food lanes and lush Lodi Gardens.",
+    heroImage: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1592635196078-9fe3d54f2377?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Food", "Architecture", "Art & Craft", "History"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 3500,
+    bestSeason: "October to March",
+    idealFor: "Urban explorers, history lovers, culinary travellers",
+    attractions: [
+      { name: "Humayun's Tomb UNESCO Site", category: "Heritage", cost: 250, duration: "2.5 hours" },
+      { name: "Old Delhi Heritage Food Walk", category: "Food", cost: 600, duration: "3 hours" },
+      { name: "Qutub Minar Complex", category: "Architecture", cost: 250, duration: "2 hours" }
+    ],
+    coordinates: { lat: 28.6139, lng: 77.2090 }
+  },
+  {
+    id: "amritsar",
+    slug: "amritsar",
+    name: "Amritsar",
+    state: "Punjab",
+    region: "North",
+    tagline: "The Golden Temple of Peace & Hearty Punjabi Warmth",
+    shortDescription: "The sanctum of Sri Harmandir Sahib, communal langar kitchen, rich culinary heritage, and patriotic Wagah border.",
+    fullDescription: "Amritsar is the spiritual capital of Sikhism. The gilded Golden Temple radiates serene devotion alongside legendary kulchas and the solemn history of Jallianwala Bagh.",
+    heroImage: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Spirituality", "Food", "Culture", "History"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 2600,
+    bestSeason: "October to March",
+    idealFor: "Spiritual visitors, foodies, cultural explorers",
+    attractions: [
+      { name: "Sri Harmandir Sahib (Golden Temple)", category: "Spirituality", cost: 0, duration: "3.5 hours" },
+      { name: "Wagah Border Beating Retreat Ceremony", category: "Culture", cost: 0, duration: "3 hours" },
+      { name: "Jallianwala Bagh Memorial", category: "History", cost: 0, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 31.6340, lng: 74.8723 }
+  },
+  {
+    id: "srinagar",
+    slug: "srinagar",
+    name: "Srinagar",
+    state: "Jammu and Kashmir",
+    region: "North",
+    tagline: "Paradise on Earth: Dal Lake Shikaras & Mughal Terraces",
+    shortDescription: "Intricately carved cedar houseboats, floating vegetable markets, saffron fields, and snow-capped Pir Panjal peaks.",
+    fullDescription: "Kashmir's summer capital is famous for tranquil Dal Lake, aromatic kahwa tea, Pashmina shawls, and cascading terraced gardens of Nishat and Shalimar Bagh.",
+    heroImage: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Nature", "Lakes", "Art & Craft", "Mountains", "Heritage"],
+    suggestedDuration: "4 - 5 Days",
+    dailyBudgetEstimate: 4200,
+    bestSeason: "April to October (Spring to Autumn) & Dec-Feb for Snow",
+    idealFor: "Nature lovers, honeymooners, artisanal craft collectors",
+    attractions: [
+      { name: "Dal Lake Shikara & Floating Market", category: "Nature", cost: 800, duration: "3 hours" },
+      { name: "Nishat & Shalimar Mughal Gardens", category: "Heritage", cost: 100, duration: "2 hours" },
+      { name: "Old Srinagar Craft & Copper Bazaar", category: "Culture", cost: 0, duration: "2.5 hours" }
+    ],
+    coordinates: { lat: 34.0837, lng: 74.7973 }
+  },
+  {
+    id: "leh",
+    slug: "leh",
+    name: "Leh",
+    state: "Ladakh",
+    region: "North",
+    tagline: "The High-Altitude Land of Monasteries & Stargazing",
+    shortDescription: "Tibetan Buddhist stupas, dramatic moonscapes, pristine azure high-altitude lakes, and mountain passes.",
+    fullDescription: "Perched at 3,500m above sea level in the trans-Himalayan plateau, Leh offers awe-inspiring gompas like Thiksey, crystal-clear Pangong Lake, and rich Ladakhi hospitality.",
+    heroImage: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Mountains", "Spirituality", "Nature", "Culture"],
+    suggestedDuration: "5 - 7 Days",
+    dailyBudgetEstimate: 4500,
+    bestSeason: "May to September",
+    idealFor: "Trekkers, stargazers, cultural seekers, photographers",
+    attractions: [
+      { name: "Thiksey Monastery Morning Chanting", category: "Spirituality", cost: 100, duration: "2.5 hours" },
+      { name: "Pangong Tso High-Altitude Lake Excursion", category: "Nature", cost: 1500, duration: "Full Day" },
+      { name: "Shanti Stupa Sunset View", category: "Culture", cost: 0, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 34.1526, lng: 77.5771 }
+  },
+  {
+    id: "shimla",
+    slug: "shimla",
+    name: "Shimla",
+    state: "Himachal Pradesh",
+    region: "North",
+    tagline: "The Queen of Hills & British Colonial Splendour",
+    shortDescription: "Pine-clad hills, heritage toy train, neo-Gothic Christ Church, and breezy Mall Road strolls.",
+    fullDescription: "Once the summer capital of British India, Shimla retains colonial charm across The Ridge, Jakhoo Temple, and surrounding apple orchards of Kufri.",
+    heroImage: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Mountains", "Heritage", "Nature"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3200,
+    bestSeason: "March to June & December to February",
+    idealFor: "Families, mountain enthusiasts, heritage explorers",
+    attractions: [
+      { name: "The Ridge & Mall Road Walk", category: "Heritage", cost: 0, duration: "2 hours" },
+      { name: "Kalka-Shimla UNESCO Toy Train Ride", category: "Heritage", cost: 350, duration: "4 hours" },
+      { name: "Viceregal Lodge & Gardens", category: "History", cost: 150, duration: "2 hours" }
+    ],
+    coordinates: { lat: 31.1048, lng: 77.1734 }
+  },
+  {
+    id: "manali",
+    slug: "manali",
+    name: "Manali",
+    state: "Himachal Pradesh",
+    region: "North",
+    tagline: "The Valley of the Gods & Alpine Adventures",
+    shortDescription: "Coniferous forests, swift Beas River rapids, Solang Valley paragliding, and gateway to Atal Tunnel.",
+    fullDescription: "Nestled in the Kullu Valley, Manali combines ancient wooden temples like Hadimba with thrilling adventures in Solang Valley and serene Old Manali cafes.",
+    heroImage: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1596761266903-85f0bc76771d?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Mountains", "Nature", "Waterfalls"],
+    suggestedDuration: "4 - 5 Days",
+    dailyBudgetEstimate: 3400,
+    bestSeason: "October to June",
+    idealFor: "Backpackers, adventure seekers, couples",
+    attractions: [
+      { name: "Hadimba Ancient Cedar Temple", category: "Heritage", cost: 50, duration: "1.5 hours" },
+      { name: "Solang Valley Snow Activities", category: "Nature", cost: 1200, duration: "4 hours" },
+      { name: "Old Manali Riverside Trail", category: "Nature", cost: 0, duration: "2 hours" }
+    ],
+    coordinates: { lat: 32.2396, lng: 77.1887 }
+  },
+  {
+    id: "rishikesh",
+    slug: "rishikesh",
+    name: "Rishikesh",
+    state: "Uttarakhand",
+    region: "North",
+    tagline: "The Yoga Capital of the World & Himalayan Gateway",
+    shortDescription: "Ganges river rafting, suspension bridges, ashram meditation, and soulful Parmarth Niketan aarti.",
+    fullDescription: "Where the holy Ganga emerges from the Shivalik Himalayas, Rishikesh draws global seekers for certified yoga teacher trainings, Ayurvedic retreats, and white-water rapids.",
+    heroImage: "https://images.unsplash.com/photo-1596761266903-85f0bc76771d?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Spirituality", "Nature", "Culture", "Mountains"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 2800,
+    bestSeason: "September to April",
+    idealFor: "Yoga practitioners, wellness seekers, adventure enthusiasts",
+    attractions: [
+      { name: "Ganga White Water Rafting", category: "Nature", cost: 1000, duration: "3 hours" },
+      { name: "Parmarth Niketan Sunset Aarti", category: "Spirituality", cost: 0, duration: "1.5 hours" },
+      { name: "The Beatles Ashram Heritage Walk", category: "Culture", cost: 150, duration: "2 hours" }
+    ],
+    coordinates: { lat: 30.0869, lng: 78.2676 }
+  },
+  {
+    id: "haridwar",
+    slug: "haridwar",
+    name: "Haridwar",
+    state: "Uttarakhand",
+    region: "North",
+    tagline: "The Gateway to the Gods on the Holy Ganges",
+    shortDescription: "Har Ki Pauri ghat, floating marigold diyas, ancient temples, and vibrant Vedic traditions.",
+    fullDescription: "One of Hinduism's seven sacred cities, Haridwar is celebrated for the Kumbh Mela and the daily spectacle of thousands of lamps floating down the sacred Brahmakund at dusk.",
+    heroImage: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Spirituality", "Culture", "Heritage", "Food"],
+    suggestedDuration: "2 Days",
+    dailyBudgetEstimate: 2400,
+    bestSeason: "October to April",
+    idealFor: "Pilgrims, cultural explorers, photographers",
+    attractions: [
+      { name: "Har Ki Pauri Evening Ganga Aarti", category: "Spirituality", cost: 0, duration: "2 hours" },
+      { name: "Mansa Devi Ropeway & Temple", category: "Culture", cost: 150, duration: "2 hours" }
+    ],
+    coordinates: { lat: 29.9457, lng: 78.1642 }
+  },
+  {
+    id: "nainital",
+    slug: "nainital",
+    name: "Nainital",
+    state: "Uttarakhand",
+    region: "North",
+    tagline: "The Lake City of Kumaon Himalayas",
+    shortDescription: "Emerald eye-shaped Naini Lake, surrounding oak ridges, Mall Road, and panoramic snow views.",
+    fullDescription: "Cradled in the Kumaon hills around the revered emerald Naini Lake, Nainital provides tranquil boating, colonial architecture, and views of Nanda Devi peak.",
+    heroImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Lakes", "Mountains", "Nature"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3000,
+    bestSeason: "March to June & September to November",
+    idealFor: "Families, nature lovers, weekend getaways",
+    attractions: [
+      { name: "Naini Lake Yacht & Paddle Boating", category: "Lakes", cost: 300, duration: "1.5 hours" },
+      { name: "Snow View Point Cable Car", category: "Mountains", cost: 300, duration: "2 hours" }
+    ],
+    coordinates: { lat: 29.3919, lng: 79.4542 }
+  },
+
+  // --- WEST & CENTRAL INDIA ---
+  {
+    id: "mumbai",
+    slug: "mumbai",
+    name: "Mumbai",
+    state: "Maharashtra",
+    region: "West",
+    tagline: "The Maximum City: Art Deco, Marine Drive & Cinema",
+    shortDescription: "Victorian Gothic UNESCO landmarks, Arabian Sea sunsets on Marine Drive, street food, and vibrant arts.",
+    fullDescription: "India's financial and cultural powerhouse is home to UNESCO Victorian Gothic ensembles, historic Elephanta Caves, and the irresistible rhythm of the Arabian Sea coastline.",
+    heroImage: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1566552881560-0be862a7c445?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Architecture", "Food", "Culture", "Heritage", "Beach"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 4800,
+    bestSeason: "November to February",
+    idealFor: "Urbanites, architecture lovers, foodies, art seekers",
+    attractions: [
+      { name: "Gateway of India & Colaba Heritage Walk", category: "Heritage", cost: 0, duration: "2.5 hours" },
+      { name: "Elephanta Island Rock-cut Caves", category: "Heritage", cost: 300, duration: "4 hours" }
+    ],
+    coordinates: { lat: 18.9220, lng: 72.8347 }
+  },
+  {
+    id: "goa",
+    slug: "goa",
+    name: "Goa",
+    state: "Goa",
+    region: "West",
+    tagline: "Sunkissed Coastlines, Portuguese Mansions & Serene Backwaters",
+    shortDescription: "Golden palm-fringed beaches, Latin Quarter Fontainhas, spice plantations, and laidback susegad.",
+    fullDescription: "India's coastal paradise blends Portuguese heritage with Konkani flavors. Explore Old Goa's UNESCO basilicas, quiet south beaches like Palolem, and eco-friendly cashew groves.",
+    heroImage: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1587922546307-776227941871?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Beach", "Heritage", "Food", "Culture"],
+    suggestedDuration: "4 - 5 Days",
+    dailyBudgetEstimate: 4200,
+    bestSeason: "November to March",
+    idealFor: "Beach lovers, heritage travellers, food explorers",
+    attractions: [
+      { name: "Fontainhas Latin Quarter Heritage Walk", category: "Culture", cost: 0, duration: "2 hours" },
+      { name: "Basilica of Bom Jesus UNESCO Site", category: "Heritage", cost: 0, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 15.2993, lng: 74.1240 }
+  },
+  {
+    id: "ahmedabad",
+    slug: "ahmedabad",
+    name: "Ahmedabad",
+    state: "Gujarat",
+    region: "West",
+    tagline: "India's First UNESCO World Heritage City of Pols",
+    shortDescription: "Intricate wooden pol architecture, Sabarmati Ashram peace, stepwells, and mouth-watering Gujarati thalis.",
+    fullDescription: "Founded in 1411 on the banks of the Sabarmati, Ahmedabad features centuries-old community pols with carved wooden facades, Gandhi's historic ashram, and the breathtaking Adalaj Stepwell.",
+    heroImage: "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1603262110263-fb010d6e75dc?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Architecture", "Food", "Art & Craft"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 3100,
+    bestSeason: "October to March",
+    idealFor: "Architecture buffs, textile collectors, heritage seekers",
+    attractions: [
+      { name: "Sabarmati Gandhi Ashram", category: "Culture", cost: 0, duration: "2 hours" },
+      { name: "Adalaj Stepwell (Vav) Architecture", category: "Architecture", cost: 50, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 23.0225, lng: 72.5714 }
+  },
+  {
+    id: "kutch",
+    slug: "kutch",
+    name: "Rann of Kutch",
+    state: "Gujarat",
+    region: "West",
+    tagline: "The Infinite White Salt Desert & Artisan Villages",
+    shortDescription: "Endless crystalline white desert under moonlight, Rogan art, Ajrakh block prints, and Kutch embroidery.",
+    fullDescription: "The Great Rann of Kutch is one of the world's largest seasonal salt marshes, illuminated by full moon festivals and surrounded by communities of master Rogan painters, weavers, and leather artisans.",
+    heroImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Desert", "Art & Craft", "Culture"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3600,
+    bestSeason: "November to February",
+    idealFor: "Craft enthusiasts, desert photographers, cultural travellers",
+    attractions: [
+      { name: "White Desert Full Moon Sunset Walk", category: "Desert", cost: 250, duration: "3 hours" },
+      { name: "Nirona Village Rogan Art Demonstration", category: "Art & Craft", cost: 0, duration: "2 hours" }
+    ],
+    coordinates: { lat: 23.8344, lng: 69.8329 }
+  },
+  {
+    id: "khajuraho",
+    slug: "khajuraho",
+    name: "Khajuraho",
+    state: "Madhya Pradesh",
+    region: "Central",
+    tagline: "Masterpieces of Medieval Chandela Temple Art",
+    shortDescription: "UNESCO World Heritage Nagara sandstone temples with exquisitely carved celestial dancers and motifs.",
+    fullDescription: "Built between 950 and 1050 AD by the Chandela dynasty, the Khajuraho temples represent the pinnacle of Indian temple architecture and stone carving.",
+    heroImage: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Art & Craft", "Architecture"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 2800,
+    bestSeason: "October to March",
+    idealFor: "Art historians, heritage lovers, photographers",
+    attractions: [
+      { name: "Western Group of Temples UNESCO Complex", category: "Heritage", cost: 250, duration: "3 hours" },
+      { name: "Kandariya Mahadeva Temple Tour", category: "Architecture", cost: 0, duration: "2 hours" }
+    ],
+    coordinates: { lat: 24.8318, lng: 79.9199 }
+  },
+  {
+    id: "chitrakote",
+    slug: "chitrakote",
+    name: "Chitrakote Falls",
+    state: "Chhattisgarh",
+    region: "Central",
+    tagline: "The Niagara of India on the Indravati River",
+    shortDescription: "A horseshoe waterfall plunging 300 meters across Bastar's dense forests and tribal craft villages.",
+    fullDescription: "Located in the Bastar district of Chhattisgarh, Chitrakote is India's widest waterfall, complemented by the rich bell metal (Dhokra) and terracotta craft traditions of local tribal communities.",
+    heroImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Waterfalls", "Nature", "Art & Craft"],
+    suggestedDuration: "2 Days",
+    dailyBudgetEstimate: 2400,
+    bestSeason: "July to October (Peak Flow) & Nov to Feb",
+    idealFor: "Nature photographers, offbeat explorers, craft enthusiasts",
+    attractions: [
+      { name: "Chitrakote Horseshoe Waterfall Viewpoint", category: "Waterfalls", cost: 0, duration: "2 hours" },
+      { name: "Bastar Dhokra Bell Metal Artisan Village", category: "Art & Craft", cost: 0, duration: "2.5 hours" }
+    ],
+    coordinates: { lat: 19.2016, lng: 81.7042 }
+  },
+
+  // --- SOUTH INDIA ---
+  {
+    id: "hyderabad",
+    slug: "hyderabad",
+    name: "Hyderabad",
+    state: "Telangana",
+    region: "South",
+    tagline: "The City of Pearls, Charminar & Royal Biryani",
+    shortDescription: "Historic Golconda Fort, 16th-century Charminar, opulent Chowmahalla Palace, and world-famous Dum Biryani.",
+    fullDescription: "Telangana's capital fuses Qutb Shahi and Asaf Jahi royal heritage with a thriving tech ecosystem. Discover the acoustics of Golconda Fort and the vibrant bangle markets of Laad Bazaar.",
+    heroImage: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Food", "Architecture"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 3600,
+    bestSeason: "October to March",
+    idealFor: "Culinary travellers, history lovers, urban explorers",
+    attractions: [
+      { name: "Charminar & Laad Bazaar Heritage Walk", category: "Heritage", cost: 50, duration: "2 hours" },
+      { name: "Golconda Fort Sound & Light Tour", category: "Heritage", cost: 200, duration: "3 hours" }
+    ],
+    coordinates: { lat: 17.3850, lng: 78.4867 }
+  },
+  {
+    id: "visakhapatnam",
+    slug: "visakhapatnam",
+    name: "Visakhapatnam (Vizag)",
+    state: "Andhra Pradesh",
+    region: "South",
+    tagline: "The City of Destiny: Coastlines, Hills & Submarines",
+    shortDescription: "Rishikonda beach, Kailasagiri hilltop viewpoints, historic INS Kursura submarine museum, and coastal drives.",
+    fullDescription: "Andhra Pradesh's premier coastal city boasts beaches framed by the Eastern Ghats, a decommissioned Soviet submarine museum on RK Beach, and Buddhist heritage sites at Thotlakonda.",
+    heroImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Beach", "Nature"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3000,
+    bestSeason: "October to March",
+    idealFor: "Beach lovers, families, coastal explorers",
+    attractions: [
+      { name: "INS Kursura Submarine Museum", category: "Culture", cost: 100, duration: "1.5 hours" },
+      { name: "Rushikonda Blue Flag Beach", category: "Beach", cost: 0, duration: "3 hours" }
+    ],
+    coordinates: { lat: 17.6868, lng: 83.2185 }
+  },
+  {
+    id: "araku-valley",
+    slug: "araku-valley",
+    name: "Araku Valley",
+    state: "Andhra Pradesh",
+    region: "South",
+    tagline: "Eastern Ghats Coffee Plantations & Borra Caves",
+    shortDescription: "Organic tribal coffee aroma, million-year-old limestone stalactites, and panoramic glass-dome Vistadome train rides.",
+    fullDescription: "Tucked into the Eastern Ghats, Araku Valley is home to indigenous tribal communities producing internationally acclaimed organic Arabica coffee and the dramatic subterranean Borra Caves.",
+    heroImage: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Coffee", "Mountains", "Caves", "Nature"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 2600,
+    bestSeason: "September to March",
+    idealFor: "Coffee enthusiasts, nature lovers, scenic train travellers",
+    attractions: [
+      { name: "Borra Caves Stalactites Exploration", category: "Caves", cost: 100, duration: "2.5 hours" },
+      { name: "Araku Organic Tribal Coffee Museum", category: "Coffee", cost: 50, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 18.3273, lng: 82.8775 }
+  },
+  {
+    id: "bengaluru",
+    slug: "bengaluru",
+    name: "Bengaluru",
+    state: "Karnataka",
+    region: "South",
+    tagline: "The Garden City of Craft Brews, Tech & Palaces",
+    shortDescription: "Lush botanical gardens of Lalbagh, Tudor-style Bangalore Palace, vibrant craft coffee culture, and art galleries.",
+    fullDescription: "Karnataka's cosmopolitan capital balances lush green heritage like Cubbon Park and Tipu Sultan's Summer Palace with a world-class craft brewing and cafe scene.",
+    heroImage: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Food", "Heritage", "Culture"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 3800,
+    bestSeason: "October to March",
+    idealFor: "Urban explorers, foodies, art lovers",
+    attractions: [
+      { name: "Lalbagh Botanical Garden & Glass House", category: "Nature", cost: 50, duration: "2.5 hours" },
+      { name: "Bangalore Tudor Royal Palace", category: "Heritage", cost: 250, duration: "2 hours" }
+    ],
+    coordinates: { lat: 12.9716, lng: 77.5946 }
+  },
+  {
+    id: "mysuru",
+    slug: "mysuru",
+    name: "Mysuru",
+    state: "Karnataka",
+    region: "South",
+    tagline: "The Royal Heritage Capital of Sandalwood & Silk",
+    shortDescription: "Illuminated Indo-Saracenic Mysore Palace, Chamundi Hills, fragrant sandalwood bazaars, and Dasara grandeur.",
+    fullDescription: "The former seat of the Wodeyar dynasty, Mysuru is famed for its grand Mysore Palace illuminated by 100,000 lightbulbs on weekends, Devaraja fruit and flower market, and pure Mysore silk weaving.",
+    heroImage: "https://images.unsplash.com/photo-1600100397608-f010e47c7c00?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Art & Craft", "Architecture", "Food"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 3000,
+    bestSeason: "September to March",
+    idealFor: "Heritage lovers, families, culture enthusiasts",
+    attractions: [
+      { name: "Mysore Palace & Royal Durbar Hall", category: "Heritage", cost: 100, duration: "2.5 hours" },
+      { name: "Devaraja Century-old Heritage Market Walk", category: "Culture", cost: 0, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 12.2958, lng: 76.6394 }
+  },
+  {
+    id: "hampi",
+    slug: "hampi",
+    name: "Hampi",
+    state: "Karnataka",
+    region: "South",
+    tagline: "The Boulder-strewn Ruins of the Vijayanagara Empire",
+    shortDescription: "UNESCO boulder landscape, musical stone pillars of Vittala Temple, Virupaksha temple, and Tungabhadra sunsets.",
+    fullDescription: "Capital of the medieval Vijayanagara Empire, Hampi features hundreds of stone monuments scattered across surreal granite boulder fields along the Tungabhadra River.",
+    heroImage: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Architecture", "Photography"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 2700,
+    bestSeason: "October to March",
+    idealFor: "History buffs, photographers, backpackers, archaeologists",
+    attractions: [
+      { name: "Vittala Temple & Stone Chariot (UNESCO)", category: "Heritage", cost: 50, duration: "3 hours" },
+      { name: "Virupaksha Living 7th-century Temple", category: "Spirituality", cost: 25, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 15.3350, lng: 76.4600 }
   },
   {
     id: "coorg",
@@ -420,298 +697,236 @@ export const destinations = [
     name: "Coorg (Kodagu)",
     state: "Karnataka",
     region: "South",
-    tagline: "The Scotland of India: Coffee Groves, Waterfalls & Kodava Warmth",
-    shortDescription: "Aromatic coffee plantations, misty valleys, Tibetan golden temples, and spirited Kodava hospitality.",
-    fullDescription: "Nestled in the lush hills of the Western Ghats in Karnataka, Kodagu is a serene highland sanctuary renowned for shade-grown Arabica and Robusta coffee, cardamom, pepper vines, and distinctive warrior Kodava culture. From roaring Abbey Falls to the tranquil monastery at Bylakuppe, Coorg offers crisp air and restorative green horizons.",
-    heroImage: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1600&q=80",
+    tagline: "The Scotland of India: Coffee Groves & Kodava Warmth",
+    shortDescription: "Misty Western Ghats coffee estates, spice trails, Abbey Falls, and unique Kodava martial culture.",
+    fullDescription: "Coorg envelops visitors in lush green coffee plantations, fragrant black pepper vines, Tibetan Buddhist settlements at Bylakuppe, and rich Kodava hospitality.",
+    heroImage: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
     ],
-    travelInterests: ["Nature", "Relaxation", "Food", "Culture", "Adventure"],
-    suggestedDuration: "3 - 4 Days",
-    dailyBudgetEstimate: 3300,
+    travelInterests: ["Coffee", "Mountains", "Nature"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3400,
     bestSeason: "October to April",
-    idealFor: "Couples, trekking enthusiasts, coffee lovers, quiet retreats",
+    idealFor: "Nature lovers, couples, coffee enthusiasts",
     attractions: [
-      {
-        id: "crg-plantation",
-        name: "Organic Coffee Estate & Pepper Trail",
-        slot: "morning",
-        category: "Nature",
-        duration: "2.5 hours",
-        cost: 350,
-        description: "Walk under shade tree canopies, learn how beans are picked and fermented, and taste freshly brewed estate espresso.",
-        tip: "Buy single-origin Arabica beans directly from the grower."
-      },
-      {
-        id: "crg-abbey",
-        name: "Abbey Falls & Hanging Bridge Walk",
-        slot: "afternoon",
-        category: "Nature",
-        duration: "1.5 hours",
-        cost: 100,
-        description: "Cascading waterfall roaring through lush coffee and spice plantations into the Cauvery River basin.",
-        tip: "Monsoon and post-monsoon months offer the fullest water flow."
-      },
-      {
-        id: "crg-rajas",
-        name: "Raja's Seat Sunset & Musical Fountain",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2 hours",
-        cost: 50,
-        description: "The historical terrace garden where Kodagu kings sat with their queens to watch the sun set over rolling valleys.",
-        tip: "Arrive an hour before dusk to witness the shifting mountain colors."
-      },
-      {
-        id: "crg-namdroling",
-        name: "Namdroling Golden Temple (Bylakuppe)",
-        slot: "morning",
-        category: "Spiritual",
-        duration: "2.5 hours",
-        cost: 50,
-        description: "One of India's largest Tibetan settlements, housing colossal 40-foot gilded statues of Buddha and chanting monks.",
-        tip: "Sample authentic Tibetan tingmo and thukpa in the monastery square."
-      },
-      {
-        id: "crg-mandalpatti",
-        name: "Mandalpatti 4x4 Jeep Safari Trek",
-        slot: "morning",
-        category: "Adventure",
-        duration: "3.5 hours",
-        cost: 850,
-        description: "Rugged off-road journey up mist-enveloped ridgelines overlooking the Pushpagiri Wildlife Sanctuary.",
-        tip: "Carry a warm jacket as the summit wind can get chilly."
-      },
-      {
-        id: "crg-pandi",
-        name: "Kodava Culinary Experience (Pandi Curry & Akki Roti)",
-        slot: "evening",
-        category: "Food",
-        duration: "2 hours",
-        cost: 450,
-        description: "Traditional feast featuring signature Kodava black vinegar (kachampuli), bamboo shoot fry, and fragrant rice rotis.",
-        tip: "Kachampuli extract makes a fantastic local culinary souvenir to take home."
-      }
-    ]
+      { name: "Private Coffee & Spice Plantation Walk", category: "Coffee", cost: 300, duration: "2 hours" },
+      { name: "Namdroling Tibetan Golden Temple (Bylakuppe)", category: "Culture", cost: 0, duration: "2 hours" }
+    ],
+    coordinates: { lat: 12.3375, lng: 75.8069 }
   },
   {
-    id: "mysuru",
-    slug: "mysuru",
-    name: "Mysuru (Mysore)",
-    state: "Karnataka",
+    id: "munnar",
+    slug: "munnar",
+    name: "Munnar",
+    state: "Kerala",
     region: "South",
-    tagline: "The Royal Heritage Capital of Sandalwood & Silk",
-    shortDescription: "Grand illuminated palaces, incense-scented markets, classical Carnatic heritage, and delectable Mysore Pak.",
-    fullDescription: "Mysuru, the historic seat of the Wadiyar dynasty, carries an aristocratic grace that captivates every visitor. Known for its world-famous Dasara festivities, the city is an open-air museum of Indo-Saracenic palaces, fragrant Devaraja Market bazaars, heritage silk looms, and the serene slopes of Chamundi Hill.",
-    heroImage: "https://images.unsplash.com/photo-1600100397608-f010f4439c36?auto=format&fit=crop&w=1600&q=80",
+    tagline: "Rolling Emerald Tea Hills & Misty Western Ghats",
+    shortDescription: "Velvety tea carpeted ridges, rare Nilgiri Tahr mountain goats in Eravikulam, and spice trail homestays.",
+    fullDescription: "Located at the confluence of three mountain streams in Kerala's Idukki district, Munnar is celebrated for endless emerald tea plantations, cool mountain mist, and rare Neelakurinji blossoms.",
+    heroImage: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1600100397608-f010f4439c36?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
     ],
-    travelInterests: ["Heritage", "Culture", "Food", "Art & Craft", "Architecture"],
-    suggestedDuration: "2 - 3 Days",
-    dailyBudgetEstimate: 2900,
-    bestSeason: "October to March",
-    idealFor: "History buffs, architecture admirers, shoppers, sweet lovers",
+    travelInterests: ["Tea", "Mountains", "Nature", "Wildlife"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 3400,
+    bestSeason: "September to May",
+    idealFor: "Nature lovers, tea connoisseurs, photographers",
     attractions: [
-      {
-        id: "mys-palace",
-        name: "Mysore Palace & Durbar Hall Grand Tour",
-        slot: "morning",
-        category: "Heritage",
-        duration: "3 hours",
-        cost: 150,
-        description: "Gaze at stained glass ceilings, Belgian crystal chandeliers, mahogany carvings, and solid silver doors.",
-        tip: "Sunday evenings feature a breathtaking illumination of over 97,000 electric bulbs."
-      },
-      {
-        id: "mys-devaraja",
-        name: "Devaraja Century-Old Market Walk",
-        slot: "afternoon",
-        category: "Culture",
-        duration: "2 hours",
-        cost: 100,
-        description: "Lively bazaar lanes stacked high with pyramids of vibrant kumkum powder, Mysore jasmine, betel leaves, and pure sandalwood oils.",
-        tip: "Great spot for picking up pure essential oils from verified co-operatives."
-      },
-      {
-        id: "mys-chamundi",
-        name: "Chamundi Hill & Nandi Bull Monolith",
-        slot: "evening",
-        category: "Spiritual",
-        duration: "2.5 hours",
-        cost: 50,
-        description: "1,000-step historic pilgrimage route leading to the 12th-century temple and the massive 16-foot monolithic granite Nandi bull.",
-        tip: "Sunset views over the entire illuminated city from Chamundi viewpoint are magnificent."
-      },
-      {
-        id: "mys-somanathapura",
-        name: "Keshava Temple (Somanathapura) Hoysala Art",
-        slot: "morning",
-        category: "Architecture",
-        duration: "3 hours",
-        cost: 250,
-        description: "13th-century tripartite star-shaped Hoysala masterpiece covered in microscopic soapstone friezes of Indian epics.",
-        tip: "Located 35km from city center, easily reached by local taxi."
-      },
-      {
-        id: "mys-pak",
-        name: "Guru Sweets Original Mysore Pak Tasting",
-        slot: "afternoon",
-        category: "Food",
-        duration: "1 hour",
-        cost: 120,
-        description: "Taste the melt-in-the-mouth ghee confection created in 1935 by Kakasura Madappa, the royal chef of the Wadiyars.",
-        tip: "Ask for freshly made hot batch straight from the iron kadai."
-      },
-      {
-        id: "mys-brindavan",
-        name: "Brindavan Gardens & Musical Fountain",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2.5 hours",
-        cost: 150,
-        description: "Terraced gardens laid out across the Krishna Raja Sagara Dam with illuminated fountains and water ballets.",
-        tip: "Best viewed right at dusk around 7:00 PM."
-      }
-    ]
+      { name: "Kolukkumalai Sunrise Tea Safari", category: "Tea", cost: 800, duration: "4 hours" },
+      { name: "Eravikulam National Park & Nilgiri Tahr", category: "Wildlife", cost: 200, duration: "3 hours" }
+    ],
+    coordinates: { lat: 10.0889, lng: 77.0595 }
+  },
+  {
+    id: "alappuzha",
+    slug: "alappuzha",
+    name: "Alappuzha (Alleppey)",
+    state: "Kerala",
+    region: "South",
+    tagline: "The Venice of the East & Serene Palm Backwaters",
+    shortDescription: "Gliding through emerald palm-fringed lagoons, traditional kettuvallam houseboats, and village canoe life.",
+    fullDescription: "Renowned for its network of tranquil canals, lagoons, and Vembanad Lake, Alappuzha offers slow travel aboard handcrafted thatch-roof houseboats enjoying authentic Karimeen fish curry.",
+    heroImage: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Backwaters", "Nature", "Food"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 4200,
+    bestSeason: "September to March",
+    idealFor: "Couples, relaxation seekers, culinary explorers",
+    attractions: [
+      { name: "Traditional Kettuvallam Day Cruise", category: "Backwaters", cost: 1500, duration: "5 hours" },
+      { name: "Village Country Canoe Narrow Canal Trail", category: "Culture", cost: 400, duration: "2.5 hours" }
+    ],
+    coordinates: { lat: 9.4981, lng: 76.3388 }
   },
   {
     id: "puducherry",
     slug: "puducherry",
     name: "Puducherry (Pondicherry)",
-    state: "Puducherry UT",
+    state: "Puducherry",
     region: "South",
-    tagline: "The French Riviera of the Coromandel Coast",
-    shortDescription: "Cobblestone boulevards, pastel mustard colonial facades, seaside promenades, and spiritual tranquility.",
-    fullDescription: "Puducherry is a delightful union of French colonial elegance and Tamil heritage, affectionately divided by a canal into the 'White Town' (French Quarter) and the bustling 'Black Town' (Heritage Tamil Quarter). Cyclists pedal past bougainvillea-draped archways, artisanal patisseries, and peaceful courtyards, while the Sri Aurobindo Ashram and experimental township of Auroville provide deep inner calm.",
-    heroImage: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1600&q=80",
+    tagline: "French Colonial Boulevards, Auroville & Coastal Zen",
+    shortDescription: "Pastel mustard French Quarter villas, bougainvillea balconies, Sri Aurobindo Ashram, and croissant cafes.",
+    fullDescription: "A coastal union territory retaining French colonial heritage, Puducherry features the leafy White Town grid, vibrant Tamil quarter architecture, seaside promenade, and experimental township of Auroville.",
+    heroImage: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
     ],
-    travelInterests: ["Relaxation", "Culture", "Architecture", "Food", "Beaches"],
-    suggestedDuration: "2 - 3 Days",
-    dailyBudgetEstimate: 3100,
+    travelInterests: ["Heritage", "Architecture", "Spirituality", "Food", "Beach"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3300,
     bestSeason: "October to March",
-    idealFor: "Cyclists, cafe hoppers, meditation practitioners, architecture admirers",
+    idealFor: "Café hoppers, heritage walkers, spiritual seekers",
     attractions: [
-      {
-        id: "pdy-whitetown",
-        name: "French Quarter Bicycle Architectural Tour",
-        slot: "morning",
-        category: "Architecture",
-        duration: "2 hours",
-        cost: 200,
-        description: "Rent vintage bicycles to explore Rue Dumas, Rue Romain Rolland, and colonial consulates draped in vibrant magenta bougainvillea.",
-        tip: "Early morning 6:30 - 8:00 AM offers quiet streets with magical coastal light."
-      },
-      {
-        id: "pdy-auroville",
-        name: "Auroville Matrimandir & Visitor Centre",
-        slot: "afternoon",
-        category: "Spiritual",
-        duration: "3.5 hours",
-        cost: 100,
-        description: "The universal experimental township dedicated to human unity, featuring the iconic golden globe of Matrimandir and organic farms.",
-        tip: "Inner chamber meditation passes must be booked in advance in person."
-      },
-      {
-        id: "pdy-promenade",
-        name: "Rock Beach Promenade Sunset Stroll",
-        slot: "evening",
-        category: "Relaxation",
-        duration: "2 hours",
-        cost: 50,
-        description: "1.5 km seaside boulevard closed to vehicular traffic in the evenings, with the French War Memorial and sea breeze.",
-        tip: "Pick up authentic woodfired pizza or gelato right across the promenade."
-      },
-      {
-        id: "pdy-ashram",
-        name: "Sri Aurobindo Ashram & Quiet Garden",
-        slot: "morning",
-        category: "Spiritual",
-        duration: "1.5 hours",
-        cost: 0,
-        description: "The serene spiritual haven founded by Sri Aurobindo and Mirra Alfassa (The Mother), housing the flower-covered Samadhi.",
-        tip: "Silence is observed inside the courtyard; leave footwear at the counter."
-      },
-      {
-        id: "pdy-croissant",
-        name: "French Bakery & Franco-Tamil Cafe Trail",
-        slot: "afternoon",
-        category: "Food",
-        duration: "2 hours",
-        cost: 350,
-        description: "Taste freshly baked almond croissants, sourdough baguettes, crepes, and spicy Pondy Creole curries.",
-        tip: "Try Baker's Street or Cafe des Arts for afternoon tea."
-      },
-      {
-        id: "pdy-paradise",
-        name: "Chunnambar Boat Cruise to Paradise Beach",
-        slot: "evening",
-        category: "Beaches",
-        duration: "2.5 hours",
-        cost: 350,
-        description: "Backwater ferry cruise through scenic coconut palms leading to an isolated golden sand spit.",
-        tip: "Last ferry returning back departs around 5:30 PM."
-      }
-    ]
+      { name: "White Town French Quarter Heritage Walk", category: "Heritage", cost: 0, duration: "2 hours" },
+      { name: "Auroville Matrimandir & Peace Zone", category: "Spirituality", cost: 0, duration: "3 hours" }
+    ],
+    coordinates: { lat: 11.9416, lng: 79.8083 }
+  },
+
+  // --- EAST & NORTHEAST INDIA ---
+  {
+    id: "kolkata",
+    slug: "kolkata",
+    name: "Kolkata",
+    state: "West Bengal",
+    region: "East",
+    tagline: "The City of Joy: Victoria Memorial, Tramcars & Literature",
+    shortDescription: "Colonial grandeur of Victoria Memorial, iconic Howrah Bridge, Kumartuli idol sculptors, and Mishti Doi.",
+    fullDescription: "India's cultural capital on the Hooghly River is celebrated for intellectual heritage, Durga Puja grandeur, yellow vintage taxis, historical coffee houses, and colonial architecture.",
+    heroImage: "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Heritage", "Food", "Art & Craft", "History"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 2800,
+    bestSeason: "October to March",
+    idealFor: "Culture vultures, literature enthusiasts, food lovers",
+    attractions: [
+      { name: "Victoria Memorial Hall & Gardens", category: "Heritage", cost: 50, duration: "2.5 hours" },
+      { name: "Kumartuli Traditional Clay Sculptor Quarter", category: "Art & Craft", cost: 0, duration: "2 hours" }
+    ],
+    coordinates: { lat: 22.5726, lng: 88.3639 }
+  },
+  {
+    id: "darjeeling",
+    slug: "darjeeling",
+    name: "Darjeeling",
+    state: "West Bengal",
+    region: "East",
+    tagline: "The Champagne of Teas & Kanchenjunga Sunrise",
+    shortDescription: "Majestic sunrise over Mount Kanchenjunga from Tiger Hill, UNESCO Himalayan toy train, and organic tea gardens.",
+    fullDescription: "Nestled in the eastern Himalayas, Darjeeling is globally famed for its exquisite muscatel black teas, views of the world's third highest peak, and vintage narrow-gauge railway.",
+    heroImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Tea", "Mountains", "Heritage"],
+    suggestedDuration: "3 - 4 Days",
+    dailyBudgetEstimate: 3300,
+    bestSeason: "March to May & October to December",
+    idealFor: "Tea lovers, mountain gazers, railway enthusiasts",
+    attractions: [
+      { name: "Tiger Hill Sunrise over Mount Kanchenjunga", category: "Mountains", cost: 100, duration: "3 hours" },
+      { name: "Happy Valley Organic Tea Estate Tasting", category: "Tea", cost: 200, duration: "2 hours" }
+    ],
+    coordinates: { lat: 27.0410, lng: 88.2663 }
+  },
+  {
+    id: "shillong",
+    slug: "shillong",
+    name: "Shillong",
+    state: "Meghalaya",
+    region: "Northeast",
+    tagline: "The Scotland of the East & Rock Music Capital",
+    shortDescription: "Pine-covered rolling hills, cascading Elephant Falls, Umiam Lake, and vibrant Khasi musical culture.",
+    fullDescription: "Meghalaya's capital Shillong is famed for cool highland breezes, the stunning Umiam Lake reservoir, vibrant street music culture, and unique matrilineal Khasi heritage.",
+    heroImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Mountains", "Waterfalls", "Nature"],
+    suggestedDuration: "3 Days",
+    dailyBudgetEstimate: 3100,
+    bestSeason: "September to May",
+    idealFor: "Nature enthusiasts, music lovers, road trippers",
+    attractions: [
+      { name: "Umiam Lake Watersports & Sunset", category: "Lakes", cost: 200, duration: "2.5 hours" },
+      { name: "Elephant Falls Three-tier Cascade", category: "Waterfalls", cost: 50, duration: "1.5 hours" }
+    ],
+    coordinates: { lat: 25.5788, lng: 91.8933 }
+  },
+  {
+    id: "port-blair",
+    slug: "port-blair",
+    name: "Sri Vijaya Puram (Port Blair)",
+    state: "Andaman and Nicobar Islands",
+    region: "Islands",
+    tagline: "Cellular Jail Freedom History & Emerald Coral Isles",
+    shortDescription: "Historic Cellular Jail memorial, pristine Radhanagar beach nearby, coral reefs, and turquoise seas.",
+    fullDescription: "The capital of India's tropical Andaman and Nicobar archipelago commemorates India's freedom fighters at the national memorial of Cellular Jail while offering gateway access to Havelock and Neil islands.",
+    heroImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Beach", "Heritage", "Nature"],
+    suggestedDuration: "4 - 5 Days",
+    dailyBudgetEstimate: 4600,
+    bestSeason: "October to May",
+    idealFor: "Beach lovers, history seekers, scuba divers",
+    attractions: [
+      { name: "Cellular Jail National Memorial & Light Show", category: "Heritage", cost: 100, duration: "3 hours" },
+      { name: "Ross Island Heritage Ruins", category: "Heritage", cost: 200, duration: "3 hours" }
+    ],
+    coordinates: { lat: 11.6234, lng: 92.7265 }
   }
 ];
 
-export const regions = ["All", "North", "South", "West", "East"];
+export function getDestinationBySlug(slug) {
+  return destinations.find((d) => d.slug === slug);
+}
 
-export const travelInterestOptions = [
-  "All",
-  "Culture",
-  "Heritage",
-  "Nature",
-  "Beaches",
-  "Food",
-  "Relaxation",
-  "Adventure",
-  "Spiritual",
-  "Architecture",
-  "Art & Craft"
-];
+export function getFeaturedDestinations() {
+  return destinations.slice(0, 4);
+}
 
 export const collections = [
   {
-    id: "heritage-escapes",
-    title: "Heritage Escapes",
-    subtitle: "Walk through royal palaces, timeless forts, and historic walled cities.",
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1200&q=80",
-    slugs: ["jaipur", "udaipur", "mysuru", "varanasi"],
-    badge: "Royal & Sacred"
+    id: "royal-palaces",
+    title: "Regal Heritage & Forts",
+    subtitle: "Sandstone bastions, Mewar courtyards, and palatial Rajput estates.",
+    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+    badge: "Royal Circuit",
+    destinationSlugs: ["jaipur", "udaipur", "jodhpur", "jaisalmer"]
   },
   {
     id: "coastal-retreats",
-    title: "Coastal Retreats",
-    subtitle: "Golden shorelines, tranquil backwaters, and Indo-French seaside promenades.",
-    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80",
-    slugs: ["goa", "puducherry"],
-    badge: "Ocean Breezes"
+    title: "Coastlines & Backwaters",
+    subtitle: "Palm lagoons, Portuguese villas, and Arabian Sea breeze.",
+    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80",
+    badge: "Coastal Serenity",
+    destinationSlugs: ["goa", "alappuzha", "puducherry", "gokarna"]
   },
   {
     id: "mountain-trails",
-    title: "Mountain Trails",
-    subtitle: "Misty tea hills, aromatic coffee plantations, and Western Ghats wildlife.",
-    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80",
-    slugs: ["munnar", "coorg"],
-    badge: "High Altitude"
+    title: "Highlands & Tea Groves",
+    subtitle: "Misty Western Ghats ridgelines, colonial bungalows, and cardamom hills.",
+    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+    badge: "Misty Ridges",
+    destinationSlugs: ["munnar", "coorg", "darjeeling", "shillong"]
   },
   {
-    id: "weekend-getaways",
-    title: "Weekend Getaways",
-    subtitle: "Quick 2-3 day immersive getaways packed with culture, cuisine, and relaxation.",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
-    slugs: ["puducherry", "mysuru", "varanasi"],
-    badge: "Quick Escapes"
+    id: "spiritual-crossroads",
+    title: "Eternal Ghats & Temples",
+    subtitle: "Dawn rowing meditation, resonant bells, and thousand-year living philosophy.",
+    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80",
+    badge: "Sacred Rivers",
+    destinationSlugs: ["varanasi", "rishikesh", "amritsar", "puri"]
   }
 ];
+

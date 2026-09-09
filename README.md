@@ -1,4 +1,4 @@
-# YatraVista — Curated Indian Travel & Smart Itinerary Planner
+# YatraVista — Full-Stack Indian Tourism Discovery & Booking Platform
 
 > **Student Innovation Prototype**  
 > **Smart India Hackathon 2026** | Problem Statement ID: **26204**  
@@ -6,108 +6,152 @@
 
 ---
 
-## 1. Project Overview
+## 1. Executive Summary
 
-**YatraVista** is a curated Indian tourism discovery and smart itinerary planning web platform designed for authentic cultural exploration. It addresses core friction points in modern Indian travel planning:
-1. **Fragmented Discovery:** Travelers often juggle multiple disconnected blogs, map tabs, and reviews to plan a 3-to-7 day trip.
-2. **Opaque Budget Estimation:** Most tools display room rates in isolation without projecting per-person meal expenses, local vehicle transit, and attraction permits.
-3. **Marginalized Local Artisans:** Generational handloom weavers, craft guilds, and boutique family homestays lose out to commission-heavy commercial booking portals.
+**YatraVista** is a full-stack Indian tourism discovery and service platform built to celebrate the heritage, craft traditions, homestays, and local enterprise across all **28 States and 8 Union Territories** of India. 
 
-YatraVista bridges these challenges by combining an editorial design aesthetic with a **deterministic, rule-based itinerary generator** that calculates complete, itemized cost breakdowns (lodging, dining, transport, and community experiences) for 1 to 7 days across 1 to 10 travelers.
+It connects three core stakeholders into an integrated ecosystem:
+1. **Travellers:** Discover 60+ curated destinations, explore heritage homestays and artisan workshops with transparent itemized pricing, build deterministic day-by-day itineraries, and book services with date/guest validation.
+2. **Hosts & Service Providers:** Publish and manage verified stays, cultural walks, craft masterclasses, and eco-tours; review incoming booking requests, accept/reject with operational notes, and track booking metrics.
+3. **Platform Administrators:** Monitor live platform metrics (total bookings, active listings, gross booking value, regional breakdown), review provider verification, and moderate listings before public release.
 
-*Disclaimer: This is an academic student innovation demonstration prototype for SIH 2026 (#26204). Stays, prices, and activities are structured demonstration data. It does not process financial transactions or imply official government endorsement.*
+*Demonstration Notice: YatraVista is an academic student innovation prototype for SIH 2026 (#26204). Stays, guides, and workshops use curated demonstration data with an instant sandbox booking checkout (no live financial transactions).*
 
 ---
 
-## 2. Technology Stack
+## 2. Technology Stack & System Architecture
 
-- **Core & Framework:** React 19 with Vite 8
-- **Routing:** React Router v7 (clean client-side routing with direct URL parameter linking)
-- **Styling:** Tailwind CSS v3.4 + PostCSS with customized CSS variables for 4 Indian themes:
+### Frontend (Client Tier)
+- **Framework:** React 19 with Vite 8 (Fast HMR & Optimized Production Bundles)
+- **Routing:** React Router v7 with role-aware route guards
+- **Styling:** Tailwind CSS v3.4 + PostCSS with CSS Custom Properties supporting **4 Indian Themes**:
   - *Royal Sandstone* (Ivory, Sandstone Gold & Deep Emerald)
   - *Kerala Rainforest* (Palm Mist, Deep Evergreen & Warm Teak)
   - *Varanasi Twilight* (Twilight Indigo, Saffron & Ganga Blue)
   - *Kashmir Mist* (Alpine Frost, Cedar Slate & Chinar Amber)
-- **Typography:** Google Fonts (`Playfair Display` serif paired with `Plus Jakarta Sans`)
-- **Icons:** Lucide React
-- **Animations & Effects:** Micro-interactions, CSS transitions, and celebratory canvas confetti
-- **State & Storage:** React Context API (`TripContext` and `ThemeProvider`) synchronized with browser `localStorage` (Version 2 schema with automatic migrations)
-- **Data Architecture:** Self-contained modular JavaScript data objects (no external API keys required to test or evaluate)
+- **Typography:** Google Fonts (`Playfair Display` serif & `Plus Jakarta Sans`)
+- **Icons & UI:** Lucide React, Canvas Confetti
+- **State Management:** 
+  - `AuthContext`: JWT-based role management, session validation, and 1-click demo switcher.
+  - `TripContext`: Deterministic itinerary generator, itemized expense math, and LocalStorage persistence.
+  - `ThemeContext`: Dynamic DOM theme switching.
+
+### Backend (API & Data Tier)
+- **Server:** Node.js + Express (RESTful JSON APIs on port `5000`)
+- **Database:** SQLite (`better-sqlite3`) with WAL mode, foreign keys, and indexed queries (`server/data/yatravista.sqlite`).
+- **Security & Auth:**
+  - Password hashing with `bcryptjs`.
+  - Stateless authentication with JSON Web Tokens (`jsonwebtoken`).
+  - Server-side role-based access control (`requireAuth`, `requireRole('provider')`, `requireRole('admin')`).
+  - Strict input validation, date sanity checks, and snapshot pricing preventing client-side price tampering.
 
 ---
 
-## 3. Upgraded Key Features
+## 3. The 3 Connected Roles & Demo Credentials
 
-### 🌟 Editorial Home Page
-- Hero with search panel (destination, duration, sample budget) passing directly to the planner.
-- Asymmetric editorial grid featuring top Indian circuits (Jaipur, Goa, Munnar, Varanasi).
-- Themed portfolios: *Heritage Escapes*, *Coastal Retreats*, *Mountain Trails*, *Weekend Getaways*.
-- Step-by-step *"How It Works"* user journey.
-- Factual demonstration artisan profile highlighting handloom weaving heritage.
+To evaluate the prototype without registering manual accounts, use the **Floating Demo Role Switcher** at the bottom right or log in with the pre-seeded credentials:
 
-### 🗺️ Explore Destinations Directory & Comparison (`/explore`)
-- Curated Indian destinations: **Jaipur, Varanasi, Munnar, Goa, Coorg, Hampi, Ladakh, Udaipur**.
-- Search by city, state, or keywords with active-filter chips and one-click *"Clear all filters"*.
-- Region pills (*North, South, West, East, All India*), themes, and budget sorting with URL synchronization.
-- **Destination Comparison Engine:** Compare up to 3 destinations side-by-side with budget ranges, best seasons, and inventory counts.
-- Contextual *"Why this matches"* explanation chips on cards.
-
-### 🏛️ Destination Detail Guides (`/destinations/:slug`)
-- Hero banner with suggested duration, daily budget estimates, and best travel seasons.
-- Detailed historical and cultural background, GI-tagged crafts, and culinary highlights.
-- Curated attractions organized with ideal visit time windows (Morning, Afternoon, Evening).
-- Related demonstration stays and local experiences located in the same circuit.
-
-### 🛏️ Accommodations & Comparison (`/stays`)
-- Demonstration properties spanning *Heritage Hotels*, *Boutique Homestays*, and *Eco-Resorts*.
-- Property comparison modal for up to 3 stays side-by-side.
-- *"Add to Trip"* attaches property tariff directly to itinerary calculations.
-
-### 🧵 Artisan Experiences (`/experiences`)
-- Community workshops with duration, tariffs, host community, inclusions, and cultural etiquette notes.
-- Destination-mismatch detector that guides users when attaching an experience outside their current destination.
-
-### 📅 Smart Trip Planner & Budget Optimizer (`/planner`)
-- Deterministic multi-day schedule generator (1 to 7 days).
-- **Interactive Slot Editing:** Move activities Up/Down within a day, replace activities, or convert slots to free leisure.
-- **Daily Notes:** Record personal reminders for each day.
-- **Unsaved Changes Tracker:** Real-time indicator and navigation guard preventing accidental loss.
-- **Budget Optimizer (*Find Lower-Cost Options*):** Analyzes over-budget plans and suggests cheaper stays, lower-cost activities, or free relaxation time with explicit trade-off explanations.
-- **Trip Packing Checklist:** Categories for documents, clothing, chargers, health, and responsible travel.
-- **Print Engine:** Clean, ink-friendly printable itinerary with disclaimers and itemized math.
-
-### 💼 Saved Trips Vault & JSON Import/Export (`/saved`)
-- Search saved trips by name or destination, and sort by date, title, destination, or budget.
-- Duplicate trips with one click.
-- Delete trip with a 6-second **Undo** notification.
-- **JSON Export & Import:** Export sanitized `.json` files and import them with schema validation.
+| Role | Email | Password | Primary Capabilities |
+| :--- | :--- | :--- | :--- |
+| **Traveller** | `traveller@yatravista.demo` | `demo123` | Book stays/experiences, manage bookings (`/bookings`), cancel with reason, plan trips (`/planner`), export itineraries. |
+| **Host / Provider** | `provider@yatravista.demo` | `demo123` | Host Dashboard (`/provider/dashboard`), create/edit listings, manage draft/live status, accept/reject booking requests with notes. |
+| **Platform Admin** | `admin@yatravista.demo` | `demo123` | Admin Portal (`/admin/dashboard`), real DB analytics, provider verification, listing moderation queue, audit log inspect. |
 
 ---
 
-## 4. Local Installation & Development
+## 4. Key Platform Features
+
+### 🇮🇳 Extensible Pan-India Catalogue (60+ Destinations)
+- Complete coverage across **all 28 States and 8 Union Territories** (North, South, West, East, Central, Northeast, and Islands).
+- Deep discovery pages with GI-tagged craft profiles, culinary highlights, historical context, and seasonal advice.
+- Side-by-side comparison matrix comparing up to 3 destinations simultaneously.
+
+### 🛏️ Bookable Accommodations & Artisan Experiences
+- Verified heritage havelis, plantation homestays, pottery workshops, and backwater cruises.
+- **"Hosted by" attribution:** Public host cards linking to provider profiles (`/providers/:id`) showcasing business licenses, response times, and bio.
+- Transparent itemized pricing drawer displaying base tariffs, occupancy multipliers, cleaning fees, and GST breakdown.
+
+### 📅 Smart Itinerary Planner & Budget Engine
+- Deterministic multi-day scheduler (1 to 7 days, 1 to 10 guests).
+- Real-time expense breakdown across lodging, dining, local transport, and activities.
+- One-click **Budget Optimizer** suggesting lower-cost alternatives when exceeding target spend.
+- Ink-friendly print engine and JSON schema export/import.
+
+### 🛡️ Provider & Admin Management Portals
+- **Provider Dashboard:** Create new listings with multi-category classification (Stay / Experience / Tour / Workshop), manage availability, and respond to traveller booking requests.
+- **Admin Portal:** Live computed database aggregates, listing moderation workflow (Pending Review -> Approved -> Rejected), provider vetting, and system audit logs.
+
+---
+
+## 5. API Endpoints Reference
+
+All API routes are served under `/api`:
+
+### Authentication & Profiles
+- `POST /api/auth/register` — Register a new Traveller or Service Provider.
+- `POST /api/auth/login` — Authenticate and receive JWT.
+- `GET /api/auth/me` — Verify session and fetch current profile.
+- `POST /api/auth/demo-switch` — 1-click token generator for demo roles.
+
+### Destinations & Discovery
+- `GET /api/destinations` — List destinations (filters: region, state, theme, search).
+- `GET /api/destinations/:slug` — Full destination guide, attractions, stays, and experiences.
+
+### Listings & Providers
+- `GET /api/listings` — Filter active listings (type, destination, price).
+- `GET /api/listings/:id` — Listing details with host attribution.
+- `POST /api/listings` — *[Provider]* Create new listing (starts in `pending_review`).
+- `PUT /api/listings/:id` — *[Provider/Admin]* Update listing information.
+- `GET /api/providers/:id` — Public provider profile with active listings.
+- `PUT /api/providers/profile` — *[Provider]* Update business bio and contact.
+
+### Bookings Flow
+- `POST /api/bookings` — *[Traveller]* Create booking with date/guest validation & price snapshot.
+- `GET /api/bookings/my` — *[Traveller]* Fetch user's booking history.
+- `GET /api/bookings/provider` — *[Provider]* Fetch incoming bookings for hosted properties.
+- `PATCH /api/bookings/:id/status` — *[Provider/Traveller/Admin]* Accept, reject, or cancel booking.
+
+### Administration
+- `GET /api/admin/stats` — Real-time database metrics (bookings, GMV, listings, users).
+- `GET /api/admin/moderation` — Queue of listings awaiting approval.
+- `POST /api/admin/moderation/:id` — Approve or reject listing.
+- `GET /api/admin/providers` — List all registered providers and verification status.
+- `PATCH /api/admin/providers/:id/verify` — Toggle verified badge.
+
+---
+
+## 6. Installation & Quick Start
+
+### Prerequisites
+- Node.js 18+ installed on your system.
+
+### Running Locally (Frontend + Backend)
 
 ```bash
-# 1. Clone repository
-git clone <repository-url>
+# 1. Clone the repository
+git clone https://github.com/durisetivarshini-ux/yatravista.git
 cd yatravista
 
 # 2. Install dependencies
 npm install
 
-# 3. Start development server
-npm run dev
+# 3. Seed SQLite Database
+node server/seed.js
 
-# 4. Build for production
-npm run build
+# 4. Start concurrent development servers (API on :5000, Vite on :5173)
+npm run dev
 ```
+
+Visit **`http://localhost:5173`** in your browser to interact with the live application.
 
 ---
 
-## 5. Prototype Limitations & Future Roadmap
+## 7. SIH 2026 Evaluation Matrix
 
-| Current Prototype State | Future Production Integration |
+| Problem Statement Requirement (#26204) | YatraVista Implementation |
 | :--- | :--- |
-| Curated static dataset | Live hotel API inventory (StayFlex, Booking.com) |
-| Browser LocalStorage | Secure user profiles with cross-device sync |
-| Client-side rule engine | ONDC unified tourism protocol integration |
-| Static estimates | Live weather, monument ticket APIs, and GIS routing |
+| **Supporting Local Hotels & Stays** | Direct host listings for boutique homestays and heritage retreats with zero intermediary markup. |
+| **Empowering Local Artisans & Guides** | Dedicated masterclass bookings with cultural etiquette notes and GI craft preservation highlights. |
+| **Transparent Travel Budgets** | Per-person daily budget breakdowns, itemized taxes, and automatic budget optimization. |
+| **Pan-India Coverage** | 60+ curated destinations representing all 28 states & 8 UTs. |
+| **Role-Based Workflow** | Dedicated portals for Travellers, Service Providers, and Administrators with backend JWT security. |
