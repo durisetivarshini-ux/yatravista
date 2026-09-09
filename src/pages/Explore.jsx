@@ -147,42 +147,44 @@ export function Explore() {
     <div className="space-y-8 pb-16">
       
       {/* 1. EDITORIAL PHOTO HERO SECTION */}
-      <section className="relative min-h-[380px] lg:min-h-[420px] flex items-center justify-center overflow-hidden bg-theme-surface border-b border-theme-border">
+      <section className="relative min-h-[400px] sm:min-h-[440px] lg:min-h-[480px] flex items-center justify-center overflow-hidden bg-theme-surface border-b border-theme-border">
         
         {/* Background Photograph */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1920&q=85"
-            alt="Amber Fort and Maota Lake, Jaipur, Rajasthan"
-            className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000"
+            alt="Amber Fort Ramparts, Jaipur, Rajasthan"
+            className="w-full h-full object-cover object-[center_35%] transform scale-105 transition-transform duration-1000"
           />
-          {/* Subtle Multi-Layer Dark Gradient for Text Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/40" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/20 to-black/60" />
+          {/* Clean Neutral Dark Gradient for High-Contrast Readability without Muddy Tone */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/35" />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 w-full flex flex-col items-center text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 w-full flex flex-col items-center text-center">
           
-          {/* Curated Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-white/15 text-amber-200 backdrop-blur-md border border-amber-300/30 mb-4 shadow-sm animate-fade-in">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+          {/* Curated Understated Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-[0.12em] uppercase font-sans bg-black/40 text-[#F0CF88] backdrop-blur-md border border-[#F0CF88]/30 mb-5 sm:mb-6 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#F0CF88]" />
             <span>Curated Indian Destinations</span>
           </div>
 
-          {/* Main Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-tight max-w-4xl drop-shadow-md">
-            Explore the Wonders of India
+          {/* Main Title: Balanced 2-line structure with Champagne Gold accent */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-serif font-semibold text-[#FFF9EF] tracking-tight leading-[1.1] max-w-[900px] text-center drop-shadow-sm">
+            <span className="inline sm:block">Explore the Wonders</span>
+            <span className="inline sm:block">
+              of <span className="text-[#F0CF88]">India</span>
+            </span>
           </h1>
 
-          {/* Supporting Subtitle */}
-          <p className="mt-3 text-sm sm:text-base lg:text-lg text-white/90 max-w-2xl font-light leading-relaxed drop-shadow-xs">
+          {/* Supporting Subtitle: 20-24px below heading with relaxed line height */}
+          <p className="mt-5 sm:mt-6 text-[17px] sm:text-[19px] md:text-[21px] text-[#FFF9EF]/90 max-w-[680px] font-sans font-normal leading-[1.6] text-balance drop-shadow-xs">
             Discover heritage cities, sacred temples, mountain escapes and local experiences.
           </p>
 
           {/* Destination Comparison Floating Badge if selected */}
           {comparedDestinations.length > 0 && (
-            <div className="mt-4">
+            <div className="mt-5">
               <button
                 type="button"
                 onClick={() => setIsComparisonOpen(true)}
@@ -195,9 +197,9 @@ export function Explore() {
           )}
 
           {/* Location Credit */}
-          <div className="absolute bottom-3 right-4 sm:right-6 text-[11px] text-white/75 bg-black/40 backdrop-blur-xs px-2.5 py-0.5 rounded-md flex items-center gap-1 font-sans">
-            <MapPin className="w-3 h-3 text-amber-300" />
-            <span>Amber Fort & Maota Lake, Rajasthan</span>
+          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
+            <MapPin className="w-3.5 h-3.5 text-[#F0CF88]" />
+            <span>Amber Fort Ramparts, Jaipur, Rajasthan</span>
           </div>
 
         </div>
