@@ -15,6 +15,7 @@ import { useTrip } from "../context/TripContext";
 import { formatINR } from "../utils/currencyFormatter";
 import { Button } from "../components/ui/Button";
 import { StayCard } from "../components/stays/StayCard";
+import AttractionCard from "../components/attractions/AttractionCard";
 
 export function DestinationDetails() {
   const { slug } = useParams();
@@ -211,50 +212,27 @@ export function DestinationDetails() {
             {/* Key Attractions Grid */}
             <div className="pt-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-serif font-bold text-theme-text">
-                  Key Attractions & Cultural Landmarks
-                </h3>
-                <span className="text-xs text-theme-text-muted">
-                  Curated with optimal visit windows
+                <div>
+                  <h3 className="text-xl font-serif font-bold text-theme-text">
+                    Attractions & Cultural Landmarks in {destination.name}
+                  </h3>
+                  <p className="text-xs text-theme-text-muted mt-0.5">
+                    Verified coordinates, suggested planning durations, and 1-click maps navigation.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-theme-tag text-theme-text">
+                  {destination.attractions?.length || 0} Places
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {destination.attractions?.map((att) => (
-                  <div
-                    key={att.id}
-                    className="p-5 rounded-2xl bg-theme-surface border border-theme-border shadow-xs hover:border-theme-primary/30 transition-all space-y-2 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between text-xs mb-1.5">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-theme-tag text-theme-text">
-                          {att.category}
-                        </span>
-                        <div className="flex items-center gap-1 text-theme-text-muted">
-                          <Clock className="w-3 h-3 text-theme-accent" />
-                          <span>{att.duration}</span>
-                        </div>
-                      </div>
-
-                      <h4 className="text-base font-serif font-bold text-theme-text">
-                        {att.name}
-                      </h4>
-                      <p className="text-xs text-theme-text-muted leading-relaxed mt-1">
-                        {att.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-3 border-t border-theme-border/60 flex items-center justify-between text-xs">
-                      <div className="flex items-center gap-1 text-theme-primary font-medium">
-                        <span className="text-[11px] text-theme-text-muted">Est. ticket:</span>
-                        <span className="font-bold">{att.cost ? formatINR(att.cost) : "Free"}</span>
-                      </div>
-                      <span className="text-[11px] text-theme-accent italic capitalize">
-                        Best in {att.slot}
-                      </span>
-                    </div>
-
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {destination.attractions?.map((att, idx) => (
+                  <AttractionCard
+                    key={att.id || idx}
+                    attraction={att}
+                    destinationName={destination.name}
+                    stateName={destination.state}
+                  />
                 ))}
               </div>
             </div>

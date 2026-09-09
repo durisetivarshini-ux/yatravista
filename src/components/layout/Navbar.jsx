@@ -34,11 +34,13 @@ export function Navbar() {
 
   const baseNavLinks = [
     { to: "/explore", label: "Explore", icon: Compass },
+    { to: "/states", label: "States & UTs", icon: Building },
+    { to: "/temples", label: "Temples", icon: Sparkles },
+    { to: "/nearby", label: "Nearby", icon: Compass },
     { to: "/stays", label: "Stays", icon: BedDouble },
     { to: "/experiences", label: "Experiences", icon: Sparkles },
-    { to: "/planner", label: "Trip Planner", icon: CalendarDays },
+    { to: "/planner", label: "Planner", icon: CalendarDays },
     { to: "/saved", label: "My Trips", icon: Bookmark, badge: totalSaved > 0 ? totalSaved : null },
-    { to: "/bookings", label: "My Bookings", icon: Ticket },
   ];
 
   // Role-specific portals
@@ -141,6 +143,15 @@ export function Navbar() {
                         Role: {role}
                       </div>
                     </div>
+
+                    <Link
+                      to="/profile"
+                      onClick={() => setUserDropdownOpen(false)}
+                      className="flex items-center gap-2 p-2 rounded-lg hover:bg-theme-bg text-theme-text font-medium"
+                    >
+                      <User className="w-3.5 h-3.5 text-theme-primary" />
+                      <span>My Profile & Settings</span>
+                    </Link>
 
                     <Link
                       to="/bookings"
@@ -280,6 +291,17 @@ export function Navbar() {
               </NavLink>
             );
           })}
+
+          {isAuthenticated && (
+            <NavLink
+              to="/profile"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-theme-text-muted hover:text-theme-text hover:bg-theme-bg"
+            >
+              <User className="w-4 h-4 text-theme-primary" />
+              <span>My Profile & Settings</span>
+            </NavLink>
+          )}
 
           <div className="pt-3 border-t border-theme-border space-y-2">
             <div className="text-xs text-theme-text-subtle font-semibold px-2">Role Switcher:</div>

@@ -139,7 +139,7 @@ export function PlannerForm({
         <div className="space-y-1.5">
           <label className="block text-xs font-semibold uppercase tracking-wider text-theme-text-muted flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-theme-primary" />
-            <span>Destination</span>
+            <span>Destination Circuit</span>
           </label>
           <select
             value={destinationSlug}
@@ -148,7 +148,7 @@ export function PlannerForm({
           >
             {destinations.map((d) => (
               <option key={d.slug} value={d.slug}>
-                {d.name}, {d.state}
+                {d.name} ({d.state} • {d.region})
               </option>
             ))}
           </select>

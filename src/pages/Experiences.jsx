@@ -20,6 +20,7 @@ import { formatINR } from "../utils/currencyFormatter";
 import { Button } from "../components/ui/Button";
 import { Modal } from "../components/ui/Modal";
 import { BookingModal } from "../components/bookings/BookingModal";
+import LocationHierarchySelector from "../components/ui/LocationHierarchySelector";
 
 export function Experiences() {
   const { 
@@ -29,23 +30,35 @@ export function Experiences() {
     selectedStay 
   } = useTrip();
 
+  const [selectedState, setSelectedState] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedDestination, setSelectedDestination] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [destinationMismatchModal, setDestinationMismatchModal] = useState(null);
   const [detailedExperience, setDetailedExperience] = useState(null);
   const [bookingTarget, setBookingTarget] = useState(null);
 
   const filteredExperiences = useMemo(() => {
     return experiences.filter((exp) => {
+      if (selectedState && exp.state?.toLowerCase() !== selectedState.toLowerCase()) {
+        return false;
+      }
       if (selectedCategory !== "All" && exp.category !== selectedCategory) {
         return false;
       }
       if (selectedDestination !== "All" && exp.destinationSlug !== selectedDestination) {
         return false;
       }
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchTitle = exp.title.toLowerCase().includes(q);
+        const matchDesc = exp.description?.toLowerCase().includes(q);
+        const matchProv = exp.provider?.toLowerCase().includes(q);
+        if (!matchTitle && !matchDesc && !matchProv) return false;
+      }
       return true;
     });
-  }, [selectedCategory, selectedDestination]);
+  }, [selectedState, selectedCategory, selectedDestination, searchQuery]);
 
   const handleAddExperience = (exp) => {
     if (selectedStay && selectedStay.destinationSlug !== exp.destinationSlug) {
@@ -129,13 +142,33 @@ export function Experiences() {
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <div className="bg-theme-surface rounded-2xl border border-theme-border p-5 shadow-xs flex flex-wrap items-center justify-between gap-4">
-        
-        {/* Category Pills */}
+      {/* Location Filter */}
+      <LocationHierarchySelector
+        selectedState={selectedState}
+        selectedDestination={selectedDestination === "All" ? "" : selectedDestination}
+        onStateChange={(st) => {
+          setSelectedState(st);
+          setSelectedDestination("All");
+        }}
+        onDestinationChange={(slug) => {
+          setSelectedDestination(slug || "All");
+        }}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onReset={() => {
+          setSelectedState("");
+          setSelectedDestination("All");
+          setSelectedCategory("All");
+          setSearchQuery("");
+        }}
+        showAttractionFilter={false}
+      />
+
+      {/* Category Pills */}
+      <div className="bg-theme-surface rounded-2xl border border-theme-border p-4 shadow-xs flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-xs font-semibold uppercase tracking-wider text-theme-text-muted mr-1">
-            Category:
+            Experience Theme:
           </span>
           {experienceCategories.map((cat) => {
             const isActive = selectedCategory === cat;
@@ -155,24 +188,6 @@ export function Experiences() {
             );
           })}
         </div>
-
-        {/* Destination Dropdown */}
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-theme-text-muted">Region:</span>
-          <select
-            value={selectedDestination}
-            onChange={(e) => setSelectedDestination(e.target.value)}
-            className="px-3 py-1.5 rounded-xl text-xs bg-theme-bg text-theme-text border border-theme-border focus:outline-none focus:ring-1 focus:ring-theme-primary"
-          >
-            <option value="All">All Circuits</option>
-            {destinations.map((d) => (
-              <option key={d.slug} value={d.slug}>
-                {d.name} ({d.state})
-              </option>
-            ))}
-          </select>
-        </div>
-
       </div>
 
       {/* Grid of Experiences */}

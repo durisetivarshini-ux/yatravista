@@ -31,6 +31,10 @@ export function initDB() {
       role TEXT NOT NULL CHECK(role IN ('traveller', 'provider', 'admin')),
       avatar_url TEXT,
       phone TEXT,
+      home_city TEXT,
+      preferred_language TEXT DEFAULT 'English',
+      travel_interests TEXT, -- JSON array
+      wishlist TEXT, -- JSON array of attraction/destination IDs
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
@@ -150,6 +154,21 @@ export function initDB() {
     CREATE INDEX IF NOT EXISTS idx_bookings_provider ON bookings(provider_id);
     CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(booking_status);
   `);
+
+  // Safe migrations for added user columns
+  const userColumns = db.prepare("PRAGMA table_info(users)").all().map(c => c.name);
+  if (!userColumns.includes("home_city")) {
+    db.exec("ALTER TABLE users ADD COLUMN home_city TEXT;");
+  }
+  if (!userColumns.includes("preferred_language")) {
+    db.exec("ALTER TABLE users ADD COLUMN preferred_language TEXT DEFAULT 'English';");
+  }
+  if (!userColumns.includes("travel_interests")) {
+    db.exec("ALTER TABLE users ADD COLUMN travel_interests TEXT;");
+  }
+  if (!userColumns.includes("wishlist")) {
+    db.exec("ALTER TABLE users ADD COLUMN wishlist TEXT;");
+  }
 
   console.log("✓ SQLite Database schema initialized successfully.");
 }

@@ -45,9 +45,54 @@ export const destinations = [
     bestSeason: "October to March (Rajasthan Tourism Guide)",
     idealFor: "Heritage lovers, photographers, foodies, culture seekers",
     attractions: [
-      { name: "Amber Palace & Sheesh Mahal", category: "Heritage", cost: 500, duration: "3 hours" },
-      { name: "Hawa Mahal & Old City Street Walk", category: "Architecture", cost: 200, duration: "2 hours" },
-      { name: "Jantar Mantar Observatory", category: "Culture", cost: 200, duration: "1.5 hours" }
+      { 
+        name: "Amber Fort & Sheesh Mahal", 
+        category: "Heritage", 
+        cost: 500, 
+        duration: "3 - 4 hours", 
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Annie Spratt",
+        description: "Opulent Rajput-Mughal hilltop citadel overlooking Maota Lake, renowned for its mirror palace (Sheesh Mahal) and ramparts.",
+        address: "Devisinghpura, Amer, Jaipur, Rajasthan 302001",
+        coordinates: { lat: 26.9855, lng: 75.8513 },
+        sourceInfo: "ASI / Rajasthan Tourism (Checked Sep 2026)"
+      },
+      { 
+        name: "Hawa Mahal (Palace of Winds)", 
+        category: "Architecture", 
+        cost: 200, 
+        duration: "1.5 - 2 hours", 
+        image: "https://images.unsplash.com/photo-1603262110263-fb010d6e75dc?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Saurabh Kumar",
+        description: "Five-story pink sandstone facade with 953 ornate jharokhas designed for royal women to observe street festivals in breeze.",
+        address: "Hawa Mahal Rd, Badi Choupad, J.D.A. Market, Jaipur, Rajasthan 302002",
+        coordinates: { lat: 26.9239, lng: 75.8267 },
+        sourceInfo: "Archaeological Survey of India"
+      },
+      { 
+        name: "City Palace of Jaipur", 
+        category: "Heritage", 
+        cost: 300, 
+        duration: "2 - 3 hours", 
+        image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Sylwia Bartyzel",
+        description: "Royal residence complex featuring the Peacock Courtyard, Chandra Mahal, museum armouries, and textile galleries.",
+        address: "Gangori Bazaar, J.D.A. Market, Pink City, Jaipur, Rajasthan 302002",
+        coordinates: { lat: 26.9258, lng: 75.8237 },
+        sourceInfo: "Jaipur Royal Family Museum Trust"
+      },
+      { 
+        name: "Jantar Mantar Astronomical Observatory", 
+        category: "Culture", 
+        cost: 200, 
+        duration: "1.5 hours", 
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Rajasthani Vistas",
+        description: "UNESCO World Heritage collection of nineteen architectural astronomical instruments built by Maharaja Sawai Jai Singh II in 1734.",
+        address: "Near City Palace, Tripoliya Bazaar, Jaipur, Rajasthan 302002",
+        coordinates: { lat: 26.9248, lng: 75.8246 },
+        sourceInfo: "UNESCO World Heritage Centre"
+      }
     ],
     coordinates: { lat: 26.9124, lng: 75.7873 }
   },
@@ -145,9 +190,54 @@ export const destinations = [
     bestSeason: "October to March",
     idealFor: "First-time visitors to India, architecture lovers",
     attractions: [
-      { name: "Taj Mahal at Sunrise", category: "Heritage", cost: 250, duration: "3 hours" },
-      { name: "Agra Red Fort", category: "History", cost: 350, duration: "2 hours" },
-      { name: "Mehtab Bagh Sunset Viewpoint", category: "Nature", cost: 100, duration: "1.5 hours" }
+      { 
+        name: "Taj Mahal (UNESCO World Heritage)", 
+        category: "Heritage", 
+        cost: 250, 
+        duration: "3 hours", 
+        image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Jovyn Chamb",
+        description: "Immortal 17th-century white marble mausoleum built by Emperor Shah Jahan on the Yamuna riverbank, symbolizing eternal love.",
+        address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
+        coordinates: { lat: 27.1751, lng: 78.0421 },
+        sourceInfo: "Archaeological Survey of India (ASI)"
+      },
+      { 
+        name: "Agra Fort (Red Sandstone Citadel)", 
+        category: "History", 
+        cost: 350, 
+        duration: "2 - 3 hours", 
+        image: "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Martin Jernberg",
+        description: "Colossal Mughal fortress housing the Jahangiri Mahal, Khas Mahal, Diwan-i-Khas, and Shah Jahan's octagonal Musamman Burj tower.",
+        address: "Agra Fort, Rakabganj, Agra, Uttar Pradesh 282003",
+        coordinates: { lat: 27.1795, lng: 78.0211 },
+        sourceInfo: "ASI Monument Trust"
+      },
+      { 
+        name: "Tomb of I'timād-ud-Daulah (Baby Taj)", 
+        category: "Architecture", 
+        cost: 210, 
+        duration: "1.5 hours", 
+        image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Heritage India",
+        description: "Exquisite precursor to the Taj Mahal built by Empress Nur Jahan featuring delicate pietra dura marble inlay and Persian gardens.",
+        address: "Moti Bagh, Agra, Uttar Pradesh 282006",
+        coordinates: { lat: 27.1929, lng: 78.0310 },
+        sourceInfo: "UP Tourism Official Portal"
+      },
+      { 
+        name: "Mehtab Bagh (Moonlight Garden Viewpoint)", 
+        category: "Nature", 
+        cost: 100, 
+        duration: "1.5 hours", 
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Agra Vistas",
+        description: "Charbagh garden complex on the opposite bank of the Yamuna River providing sunset silhouettes of the Taj Mahal.",
+        address: "Dharmapuri, Forest Colony, Nagla Devjit, Agra, Uttar Pradesh 282001",
+        coordinates: { lat: 27.1800, lng: 78.0421 },
+        sourceInfo: "ASI Agra Circle"
+      }
     ],
     coordinates: { lat: 27.1767, lng: 78.0081 }
   },
@@ -566,8 +656,42 @@ export const destinations = [
     bestSeason: "October to March",
     idealFor: "Culinary travellers, history lovers, urban explorers",
     attractions: [
-      { name: "Charminar & Laad Bazaar Heritage Walk", category: "Heritage", cost: 50, duration: "2 hours" },
-      { name: "Golconda Fort Sound & Light Tour", category: "Heritage", cost: 200, duration: "3 hours" }
+      { 
+        name: "Charminar Monument & Laad Bazaar", 
+        category: "Heritage", 
+        cost: 50, 
+        duration: "2 hours", 
+        image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Pranav Kumar",
+        description: "Iconic 1591 CE Indo-Islamic four-minaret monument commissioned by Muhammad Quli Qutb Shah, surrounded by vibrant glass and lacquer bangle markets.",
+        address: "Charminar Rd, Char Kaman, Ghansi Bazaar, Hyderabad, Telangana 500002",
+        coordinates: { lat: 17.3616, lng: 78.4747 },
+        sourceInfo: "Archaeological Survey of India"
+      },
+      { 
+        name: "Golconda Fort & Acoustic Citadel", 
+        category: "Heritage", 
+        cost: 200, 
+        duration: "3 - 4 hours", 
+        image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Telangana Tourism",
+        description: "Medieval fortress of the Kakatiyas and Qutb Shahis, world-famous for its acoustic engineering (handclap at Fateh Darwaza echoes at Bala Hissar 1km uphill).",
+        address: "Khair Complex, Golconda Fort, Hyderabad, Telangana 500008",
+        coordinates: { lat: 17.3833, lng: 78.4011 },
+        sourceInfo: "Telangana State Tourism Portal"
+      },
+      { 
+        name: "Salar Jung Museum (Global Art Vault)", 
+        category: "Culture", 
+        cost: 100, 
+        duration: "3 hours", 
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Museum Archive",
+        description: "One of the world's largest one-man collections of art, sculptures, clocks, jade daggers, and the famous Veiled Rebecca marble statue.",
+        address: "Salar Jung Rd, Darulshifa, Hyderabad, Telangana 500002",
+        coordinates: { lat: 17.3713, lng: 78.4804 },
+        sourceInfo: "Ministry of Culture, Govt. of India"
+      }
     ],
     coordinates: { lat: 17.3850, lng: 78.4867 }
   },
@@ -578,22 +702,103 @@ export const destinations = [
     state: "Andhra Pradesh",
     region: "South",
     tagline: "The City of Destiny: Coastlines, Hills & Submarines",
-    shortDescription: "Rishikonda beach, Kailasagiri hilltop viewpoints, historic INS Kursura submarine museum, and coastal drives.",
-    fullDescription: "Andhra Pradesh's premier coastal city boasts beaches framed by the Eastern Ghats, a decommissioned Soviet submarine museum on RK Beach, and Buddhist heritage sites at Thotlakonda.",
+    shortDescription: "RK Beach, Kailasagiri hilltop viewpoints, historic INS Kursura submarine museum, and scenic coastal excursions.",
+    fullDescription: "Andhra Pradesh's premier coastal city features scenic beaches framed by the Eastern Ghats, a real decommissioned Soviet submarine museum on RK Beach, and hilltop ropeway vistas.",
     heroImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80"
     ],
-    travelInterests: ["Beach", "Nature"],
+    travelInterests: ["Beach", "Nature", "Culture", "Heritage"],
     suggestedDuration: "3 Days",
     dailyBudgetEstimate: 3000,
     bestSeason: "October to March",
     idealFor: "Beach lovers, families, coastal explorers",
     attractions: [
-      { name: "INS Kursura Submarine Museum", category: "Culture", cost: 100, duration: "1.5 hours" },
-      { name: "Rushikonda Blue Flag Beach", category: "Beach", cost: 0, duration: "3 hours" }
+      { 
+        name: "RK Beach & INS Kursura Submarine Museum", 
+        category: "Culture", 
+        cost: 100, 
+        duration: "2 hours", 
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Coastal India",
+        description: "First submarine turned maritime museum in Asia, preserved directly on the sands of Ramakrishna Beach along with the TU-142 aircraft museum.",
+        address: "RK Beach Rd, Kirlampudi Layout, Visakhapatnam, Andhra Pradesh 530017",
+        coordinates: { lat: 17.7169, lng: 83.3323 },
+        sourceInfo: "Visakhapatnam Metropolitan Region Development Authority"
+      },
+      { 
+        name: "Kailasagiri Hilltop Park & Sea-View Ropeway", 
+        category: "Nature", 
+        cost: 50, 
+        duration: "2.5 hours", 
+        image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Vizag Vistas",
+        description: "Hilltop park perched at 360 feet offering panoramic 360-degree views of the Bay of Bengal coastline, massive Shiva-Parvati statue, and cable car ride.",
+        address: "Hill Top Rd, Kailasagiri, Visakhapatnam, Andhra Pradesh 530043",
+        coordinates: { lat: 17.7490, lng: 83.3424 },
+        sourceInfo: "Andhra Pradesh Tourism Development Corp (APTDC)"
+      },
+      { 
+        name: "Araku Valley & Borra Caves Excursion", 
+        category: "Nature", 
+        cost: 300, 
+        duration: "Full Day (Excursion)", 
+        image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Eastern Ghats",
+        description: "Scenic 110km mountain day-trip from Vizag via Vistadome train into the Eastern Ghats coffee hills and million-year-old stalactite limestone Borra Caves.",
+        address: "Eastern Ghats, Alluri Sitharama Raju District, Andhra Pradesh 531149",
+        coordinates: { lat: 18.2811, lng: 83.0396 },
+        isRegionalExcursion: true,
+        sourceInfo: "APTDC Regional Excursions Bureau"
+      }
     ],
     coordinates: { lat: 17.6868, lng: 83.2185 }
+  },
+  {
+    id: "tirupati",
+    slug: "tirupati",
+    name: "Tirupati & Tirumala",
+    state: "Andhra Pradesh",
+    region: "South",
+    tagline: "The Sacred Seven Hills & Spiritual Abode of Venkateswara",
+    shortDescription: "World-renowned Tirumala Venkateswara Temple, lush Seshachalam hills, sacred theerthams, and historic Chandragiri Fort.",
+    fullDescription: "Nestled at the base of the sacred Seshachalam Hills in Andhra Pradesh, Tirupati is the spiritual epicentre of Vaishnavism, welcoming millions to the divine presence of Lord Balaji.",
+    heroImage: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+    ],
+    travelInterests: ["Spirituality", "Heritage", "Culture"],
+    suggestedDuration: "2 - 3 Days",
+    dailyBudgetEstimate: 2500,
+    bestSeason: "September to March",
+    idealFor: "Pilgrims, spiritual seekers, cultural families",
+    attractions: [
+      {
+        name: "Sri Venkateswara Swamy Temple (Tirumala)",
+        category: "Spirituality",
+        cost: 0,
+        duration: "4 - 5 hours",
+        image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Kalyan Chakravarthy",
+        description: "Revered as the holy abode of Lord Vishnu on Earth atop the sacred Seshachalam Seven Hills.",
+        address: "Tirumala Hills, Tirupati, Andhra Pradesh 517504",
+        coordinates: { lat: 13.6833, lng: 79.3472 },
+        sourceInfo: "Tirumala Tirupati Devasthanams (TTD)"
+      },
+      {
+        name: "Chandragiri Historic Fort & Raja Mahal",
+        category: "Heritage",
+        cost: 50,
+        duration: "2 hours",
+        image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        imageCredit: "Unsplash / Heritage AP",
+        description: "11th-century fort built by Vijayanagara emperors with three-storied Indo-Saracenic palace and sound & light show.",
+        address: "Chandragiri, Tirupati District, Andhra Pradesh 517101",
+        coordinates: { lat: 13.5828, lng: 79.3175 },
+        sourceInfo: "Archaeological Survey of India"
+      }
+    ],
+    coordinates: { lat: 13.6288, lng: 79.4192 }
   },
   {
     id: "araku-valley",

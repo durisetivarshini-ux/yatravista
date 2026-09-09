@@ -5,16 +5,18 @@ import {
   Info 
 } from "lucide-react";
 import { stays, stayCategories } from "../data/stays";
-import { destinations } from "../data/destinations";
 import { StayCard } from "../components/stays/StayCard";
 import { StayComparison } from "../components/stays/StayComparison";
 import { EmptyState } from "../components/ui/EmptyState";
 import { useTrip } from "../context/TripContext";
+import LocationHierarchySelector from "../components/ui/LocationHierarchySelector";
 
 export function Stays() {
   const { comparedStays } = useTrip();
 
+  const [selectedState, setSelectedState] = useState("");
   const [selectedDestination, setSelectedDestination] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [maxPrice, setMaxPrice] = useState(10000);
   const [selectedAmenity, setSelectedAmenity] = useState("All");
@@ -28,7 +30,9 @@ export function Stays() {
   }, []);
 
   const handleReset = () => {
+    setSelectedState("");
     setSelectedDestination("All");
+    setSearchQuery("");
     setSelectedCategory("All");
     setMaxPrice(10000);
     setSelectedAmenity("All");
@@ -38,6 +42,9 @@ export function Stays() {
   const filteredStays = useMemo(() => {
     return stays
       .filter((stay) => {
+        if (selectedState && stay.state?.toLowerCase() !== selectedState.toLowerCase()) {
+          return false;
+        }
         if (selectedDestination !== "All" && stay.destinationSlug !== selectedDestination) {
           return false;
         }
@@ -49,6 +56,14 @@ export function Stays() {
         }
         if (selectedAmenity !== "All" && !stay.amenities?.includes(selectedAmenity)) {
           return false;
+        }
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase();
+          const matchTitle = stay.title.toLowerCase().includes(q);
+          const matchLoc = stay.location?.toLowerCase().includes(q);
+          const matchState = stay.state?.toLowerCase().includes(q);
+          const matchDesc = stay.description?.toLowerCase().includes(q);
+          if (!matchTitle && !matchLoc && !matchState && !matchDesc) return false;
         }
         return true;
       })
@@ -101,34 +116,31 @@ export function Stays() {
         </div>
       </div>
 
-      {/* Filter Controls Panel */}
-      <div className="bg-theme-surface rounded-2xl border border-theme-border p-6 shadow-sm space-y-5">
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          {/* Destination */}
-          <div className="space-y-1">
-            <label className="text-xs font-semibold uppercase tracking-wider text-theme-text-muted">
-              Destination
-            </label>
-            <select
-              value={selectedDestination}
-              onChange={(e) => setSelectedDestination(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-theme-bg border border-theme-border text-xs font-medium text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-primary cursor-pointer"
-            >
-              <option value="All">All Destinations</option>
-              {destinations.map((d) => (
-                <option key={d.slug} value={d.slug}>
-                  {d.name}, {d.state}
-                </option>
-              ))}
-            </select>
-          </div>
+      {/* Hierarchical Location Filter */}
+      <LocationHierarchySelector
+        selectedState={selectedState}
+        selectedDestination={selectedDestination === "All" ? "" : selectedDestination}
+        onStateChange={(state) => {
+          setSelectedState(state);
+          setSelectedDestination("All");
+        }}
+        onDestinationChange={(slug) => {
+          setSelectedDestination(slug || "All");
+        }}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onReset={handleReset}
+        showAttractionFilter={false}
+      />
 
+      {/* Property Specific Filters (Category, Price Slider, Amenity, Sorting) */}
+      <div className="bg-theme-surface rounded-2xl border border-theme-border p-5 shadow-sm space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+          
           {/* Property Category */}
           <div className="space-y-1">
             <label className="text-xs font-semibold uppercase tracking-wider text-theme-text-muted">
-              Category
+              Property Category
             </label>
             <select
               value={selectedCategory}
@@ -152,12 +164,30 @@ export function Stays() {
             <input
               type="range"
               min="2000"
-              max="10000"
+              max="15000"
               step="500"
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
               className="w-full accent-theme-primary cursor-pointer mt-2"
             />
+          </div>
+
+          {/* Amenity Filter */}
+          <div className="space-y-1">
+            <label className="text-xs font-semibold uppercase tracking-wider text-theme-text-muted">
+              Key Amenity
+            </label>
+            <select
+              value={selectedAmenity}
+              onChange={(e) => setSelectedAmenity(e.target.value)}
+              className="w-full px-3 py-2 rounded-xl bg-theme-bg border border-theme-border text-xs font-medium text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-primary cursor-pointer"
+            >
+              {allAmenities.map((a) => (
+                <option key={a} value={a}>
+                  {a === "All" ? "All Amenities" : a}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Sort By */}

@@ -39,7 +39,11 @@ router.post("/login", (req, res) => {
       email: user.email,
       role: user.role,
       avatar_url: user.avatar_url,
-      phone: user.phone
+      phone: user.phone,
+      home_city: user.home_city,
+      preferred_language: user.preferred_language || 'English',
+      travel_interests: user.travel_interests ? JSON.parse(user.travel_interests) : [],
+      wishlist: user.wishlist ? JSON.parse(user.wishlist) : []
     },
     providerProfile
   });
@@ -69,7 +73,11 @@ router.post("/demo-login", (req, res) => {
       email: user.email,
       role: user.role,
       avatar_url: user.avatar_url,
-      phone: user.phone
+      phone: user.phone,
+      home_city: user.home_city,
+      preferred_language: user.preferred_language || 'English',
+      travel_interests: user.travel_interests ? JSON.parse(user.travel_interests) : [],
+      wishlist: user.wishlist ? JSON.parse(user.wishlist) : []
     },
     providerProfile
   });
@@ -83,6 +91,9 @@ router.post("/register", (req, res) => {
     password, 
     role = "traveller", 
     phone,
+    home_city,
+    preferred_language = "English",
+    travel_interests = [],
     businessName,
     tagline,
     bio,
@@ -110,11 +121,23 @@ router.post("/register", (req, res) => {
   const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`;
 
   const insertUser = db.prepare(`
-    INSERT INTO users (id, name, email, password_hash, role, avatar_url, phone)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO users (id, name, email, password_hash, role, avatar_url, phone, home_city, preferred_language, travel_interests, wishlist)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
-  insertUser.run(id, name, email, passwordHash, role, avatarUrl, phone || null);
+  insertUser.run(
+    id,
+    name,
+    email,
+    passwordHash,
+    role,
+    avatarUrl,
+    phone || null,
+    home_city || null,
+    preferred_language,
+    JSON.stringify(travel_interests || []),
+    JSON.stringify([])
+  );
 
   // If registering as provider, create provider profile application
   if (role === "provider") {
@@ -141,7 +164,18 @@ router.post("/register", (req, res) => {
     );
   }
 
-  const user = { id, name, email, role, avatar_url: avatarUrl, phone };
+  const user = {
+    id,
+    name,
+    email,
+    role,
+    avatar_url: avatarUrl,
+    phone,
+    home_city: home_city || null,
+    preferred_language,
+    travel_interests: travel_interests || [],
+    wishlist: []
+  };
   const token = generateToken(user);
 
   res.status(201).json({
@@ -153,14 +187,97 @@ router.post("/register", (req, res) => {
 
 // 4. Current User Session Verification
 router.get("/me", requireAuth, (req, res) => {
+  const userRecord = db.prepare("SELECT * FROM users WHERE id = ?").get(req.user.id);
+  if (!userRecord) {
+    return res.status(404).json({ error: "User not found." });
+  }
+
   let providerProfile = null;
-  if (req.user.role === "provider") {
-    providerProfile = db.prepare("SELECT * FROM provider_profiles WHERE user_id = ?").get(req.user.id);
+  if (userRecord.role === "provider") {
+    providerProfile = db.prepare("SELECT * FROM provider_profiles WHERE user_id = ?").get(userRecord.id);
   }
 
   res.json({
-    user: req.user,
+    user: {
+      id: userRecord.id,
+      name: userRecord.name,
+      email: userRecord.email,
+      role: userRecord.role,
+      avatar_url: userRecord.avatar_url,
+      phone: userRecord.phone,
+      home_city: userRecord.home_city,
+      preferred_language: userRecord.preferred_language || 'English',
+      travel_interests: userRecord.travel_interests ? JSON.parse(userRecord.travel_interests) : [],
+      wishlist: userRecord.wishlist ? JSON.parse(userRecord.wishlist) : []
+    },
     providerProfile
+  });
+});
+
+// 5. Update Profile (Authenticated user updating their own profile)
+router.put("/profile", requireAuth, (req, res) => {
+  const { name, phone, home_city, preferred_language, travel_interests, avatar_url } = req.body;
+  const userId = req.user.id;
+
+  db.prepare(`
+    UPDATE users 
+    SET name = COALESCE(?, name),
+        phone = COALESCE(?, phone),
+        home_city = COALESCE(?, home_city),
+        preferred_language = COALESCE(?, preferred_language),
+        travel_interests = COALESCE(?, travel_interests),
+        avatar_url = COALESCE(?, avatar_url)
+    WHERE id = ?
+  `).run(
+    name || null,
+    phone || null,
+    home_city || null,
+    preferred_language || null,
+    travel_interests ? JSON.stringify(travel_interests) : null,
+    avatar_url || null,
+    userId
+  );
+
+  const updatedUser = db.prepare("SELECT * FROM users WHERE id = ?").get(userId);
+
+  res.json({
+    message: "Profile updated successfully",
+    user: {
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      avatar_url: updatedUser.avatar_url,
+      phone: updatedUser.phone,
+      home_city: updatedUser.home_city,
+      preferred_language: updatedUser.preferred_language || 'English',
+      travel_interests: updatedUser.travel_interests ? JSON.parse(updatedUser.travel_interests) : [],
+      wishlist: updatedUser.wishlist ? JSON.parse(updatedUser.wishlist) : []
+    }
+  });
+});
+
+// 6. Toggle Wishlist Item
+router.post("/wishlist/toggle", requireAuth, (req, res) => {
+  const { itemId } = req.body;
+  if (!itemId) {
+    return res.status(400).json({ error: "itemId is required." });
+  }
+
+  const user = db.prepare("SELECT wishlist FROM users WHERE id = ?").get(req.user.id);
+  let list = user && user.wishlist ? JSON.parse(user.wishlist) : [];
+
+  if (list.includes(itemId)) {
+    list = list.filter(id => id !== itemId);
+  } else {
+    list.push(itemId);
+  }
+
+  db.prepare("UPDATE users SET wishlist = ? WHERE id = ?").run(JSON.stringify(list), req.user.id);
+
+  res.json({
+    message: "Wishlist updated",
+    wishlist: list
   });
 });
 

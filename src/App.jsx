@@ -24,6 +24,11 @@ import { AdminDashboard } from "./pages/AdminDashboard";
 import { About } from "./pages/About";
 import { ProjectShowcase } from "./pages/ProjectShowcase";
 import { NotFound } from "./pages/NotFound";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Temples from "./pages/Temples";
+import BrowseStates from "./pages/BrowseStates";
+import Nearby from "./pages/Nearby";
 
 export function App() {
   return (
@@ -33,6 +38,11 @@ export function App() {
           <PageLayout>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/temples" element={<Temples />} />
+              <Route path="/states" element={<BrowseStates />} />
+              <Route path="/nearby" element={<Nearby />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/destinations/:slug" element={<DestinationDetails />} />
               <Route path="/stays" element={<Stays />} />

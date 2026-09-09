@@ -164,6 +164,79 @@ export function Home() {
         </div>
       </section>
 
+      {/* 1.5 DISCOVERY HUBS SPOTLIGHT (States, Temples, Nearby) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          
+          {/* Card 1: Sacred Temples */}
+          <Link
+            to="/temples"
+            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-theme-accent/50 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-theme-accent transition-colors">
+                Temples & Spiritual Journeys
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Tirumala, Srisailam, Meenakshi Amman, Kashi Vishwanath, Kedarnath, and Mahakaleshwar with verified etiquette, dress codes, and official portals.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-theme-accent">
+              <span>Explore Pilgrimage Guide</span>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Card 2: Browse 36 States & UTs */}
+          <Link
+            to="/states"
+            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-theme-primary/50 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-theme-primary-light text-theme-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Compass className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-theme-primary transition-colors">
+                Browse All 36 States & UTs
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Complete geographic coverage across all 28 Indian States and 8 Union Territories with curated tourist circuits and monuments.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-theme-primary">
+              <span>View Pan-India Directory</span>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          {/* Card 3: Nearby & Directions */}
+          <Link
+            to="/nearby"
+            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-emerald-500/50 transition-all flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-emerald-600 transition-colors">
+                Nearby Places & Directions
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Use voluntary location access to discover heritage sites and temples closest to you with 1-click external maps navigation.
+              </p>
+            </div>
+            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
+              <span>Find Places Near Me</span>
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+        </div>
+      </section>
+
       {/* 2. THREE-STEP "HOW IT WORKS" WORKFLOW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
