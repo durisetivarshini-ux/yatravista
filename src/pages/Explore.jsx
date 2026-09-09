@@ -54,6 +54,10 @@ const VISUAL_CATEGORIES = [
   },
 ];
 
+// Verified Working Indian Heritage Hero Photography with Fallbacks
+const PRIMARY_HERO_IMAGE = "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1920&q=85";
+const FALLBACK_HERO_IMAGE = "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=85";
+
 export function Explore() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { comparedDestinations } = useTrip();
@@ -70,6 +74,18 @@ export function Explore() {
   const [selectedInterest, setSelectedInterest] = useState(initialInterest);
   const [sortBy, setSortBy] = useState(initialSort);
   const [isComparisonOpen, setIsComparisonOpen] = useState(false);
+  
+  // Hero Image Error and Fallback State
+  const [heroImgSrc, setHeroImgSrc] = useState(PRIMARY_HERO_IMAGE);
+  const [heroImgError, setHeroImgError] = useState(false);
+
+  const handleHeroImageError = () => {
+    if (heroImgSrc === PRIMARY_HERO_IMAGE) {
+      setHeroImgSrc(FALLBACK_HERO_IMAGE);
+    } else {
+      setHeroImgError(true);
+    }
+  };
 
   // Sync state changes back into URL params
   useEffect(() => {
@@ -147,18 +163,23 @@ export function Explore() {
     <div className="space-y-8 pb-16">
       
       {/* 1. BRIGHTENED & REBALANCED PHOTO HERO */}
-      <section className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex items-center justify-center overflow-hidden bg-theme-surface border-b border-theme-border">
+      <section className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex items-center justify-center overflow-hidden bg-theme-primary border-b border-theme-border">
         
         {/* Background Photograph with Natural Colours & Clear Skies */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1600100397608-f010f446a1a4?auto=format&fit=crop&w=1920&q=85"
-            alt="Jal Mahal floating on Man Sagar Lake, Jaipur, Rajasthan"
-            className="w-full h-full object-cover object-[center_40%] transform scale-100"
-          />
-          {/* Subtle & Clean Neutral Gradient (Preserves Sky & Water Vibrancy while guaranteeing text legibility) */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20" />
-        </div>
+        {!heroImgError ? (
+          <div className="absolute inset-0 z-0">
+            <img
+              src={heroImgSrc}
+              alt={heroImgSrc === PRIMARY_HERO_IMAGE ? "Amber Fort Ramparts, Jaipur, Rajasthan" : "Taj Mahal Citadel, Agra, Uttar Pradesh"}
+              onError={handleHeroImageError}
+              className="w-full h-full object-cover object-[center_35%] transform scale-100"
+            />
+            {/* Subtle & Clean Neutral Gradient (Preserves Sandstone & Sky Vibrancy while guaranteeing text legibility) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20" />
+          </div>
+        ) : (
+          <div className="absolute inset-0 z-0 bg-gradient-to-br from-theme-primary via-theme-primary/90 to-theme-nav" />
+        )}
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 w-full flex flex-col items-center text-center">
@@ -194,10 +215,12 @@ export function Explore() {
           )}
 
           {/* Accurate Verified Location Credit */}
-          <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
-            <MapPin className="w-3.5 h-3.5 text-[#F0CF88]" />
-            <span>Jal Mahal, Jaipur, Rajasthan</span>
-          </div>
+          {!heroImgError && (
+            <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
+              <MapPin className="w-3.5 h-3.5 text-[#F0CF88]" />
+              <span>{heroImgSrc === PRIMARY_HERO_IMAGE ? "Amber Fort Ramparts, Jaipur, Rajasthan" : "Taj Mahal Citadel, Agra, Uttar Pradesh"}</span>
+            </div>
+          )}
 
         </div>
       </section>
