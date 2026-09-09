@@ -4,159 +4,207 @@ import {
   Compass, 
   ArrowRight, 
   MapPin, 
-  Calendar, 
-  Wallet, 
   Sparkles, 
   BedDouble, 
   HeartHandshake, 
-  ChevronRight
+  ChevronRight,
+  Landmark,
+  Layers,
+  Navigation,
+  ShieldCheck,
+  Search,
+  Calendar,
+  Wallet,
+  Clock,
+  ExternalLink
 } from "lucide-react";
 import { destinations, collections } from "../data/destinations";
+import { statesAndUTs, getZoneList } from "../data/statesAndUTs";
+import { templesData } from "../data/temples";
+import { stays } from "../data/stays";
+import { experiences } from "../data/experiences";
 import { DestinationCard } from "../components/destinations/DestinationCard";
+import { StayCard } from "../components/stays/StayCard";
+import TempleCard from "../components/temples/TempleCard";
 import { Button } from "../components/ui/Button";
 
 export function Home() {
   const navigate = useNavigate();
-  const [searchDestination, setSearchDestination] = useState("jaipur");
-  const [searchDays, setSearchDays] = useState(3);
-  const [searchBudget, setSearchBudget] = useState(35000);
+
+  // Search Panel State
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedInterest, setSelectedInterest] = useState("All");
+  const [locationLoading, setLocationLoading] = useState(false);
+
+  // States Tab Zone
+  const [selectedZone, setSelectedZone] = useState("North");
+
+  const zones = ["North", "South", "West", "East", "Central", "Northeast", "Islands"];
 
   const handleHeroSearch = (e) => {
     e.preventDefault();
-    navigate(`/planner?destination=${searchDestination}&days=${searchDays}&budget=${searchBudget}`);
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) params.set("q", searchQuery.trim());
+    if (selectedInterest !== "All") params.set("interest", selectedInterest);
+    navigate(`/explore?${params.toString()}`);
   };
 
-  // Curate 3 featured destinations for editorial asymmetry
-  const featuredDestination = destinations.find(d => d.slug === "jaipur");
-  const secondaryDestinations = destinations.filter(d => ["goa", "munnar", "varanasi"].includes(d.slug));
+  const handleUseLocation = () => {
+    setLocationLoading(true);
+    if (!navigator.geolocation) {
+      navigate("/nearby");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      () => {
+        setLocationLoading(false);
+        navigate("/nearby");
+      },
+      () => {
+        setLocationLoading(false);
+        navigate("/nearby");
+      },
+      { timeout: 8000 }
+    );
+  };
+
+  // Filtered States by Zone
+  const statesInZone = statesAndUTs.filter(s => s.zone === selectedZone).slice(0, 4);
+
+  // Curated Featured Destinations
+  const featuredDestinations = destinations.filter(d => 
+    ["jaipur", "varanasi", "munnar", "goa", "udaipur", "hampi"].includes(d.slug)
+  );
+
+  // Featured Temples
+  const featuredTemples = templesData.slice(0, 3);
+
+  // Featured Stays & Experiences
+  const sampleStays = stays.slice(0, 3);
+  const sampleExperiences = experiences.slice(0, 2);
 
   return (
     <div className="space-y-20 pb-20">
       
-      {/* 1. CINEMATIC EDITORIAL HERO */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-8 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Background Image with warm gradient overlay */}
+      {/* 1. PREMIUM IMAGE-BACKGROUND HERO */}
+      <section className="relative min-h-[85vh] flex items-center justify-center pt-8 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Large Travel Photography Background with Subtle Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2000&q=85"
-            alt="Majestic Indian Palace & Golden Sunlight"
-            className="w-full h-full object-cover object-center filter brightness-[0.78]"
+            alt="Majestic Indian Heritage Palace"
+            className="w-full h-full object-cover object-center filter brightness-[0.72]"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-theme-bg via-black/40 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-theme-bg via-black/45 to-black/60" />
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6 pt-12">
+        {/* Hero Content Area */}
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6 pt-8 sm:pt-12">
           
+          {/* Secondary SIH Prototype Label */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs text-white tracking-wide font-medium shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>Curated Indian Journeys • Student Innovation Prototype (SIH #26204)</span>
+            <span>SIH 2026 • Student Prototype (#26204) — Travel & Tourism</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight leading-[1.12] drop-shadow-sm">
+          {/* Clean Main Heading */}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
             Discover India. <br />
-            <span className="italic font-normal text-amber-200">Make every journey your own.</span>
+            <span className="italic font-normal text-amber-200">Plan a journey that feels like you.</span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-white/85 leading-relaxed font-sans drop-shadow">
-            Experience the cultural soul of India through authentic heritage stays, artisan-led workshops, and intelligent day-by-day itineraries tailored to your time and budget.
+          {/* Short Supporting Line */}
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-white/90 leading-relaxed font-sans drop-shadow">
+            Explore iconic places, sacred temples, heritage stays and local experiences.
           </p>
 
-          {/* Quick CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          {/* Primary & Secondary Hero Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
             <Button
-              to="/planner"
+              to="/explore"
               variant="primary"
               size="lg"
-              className="bg-theme-accent hover:bg-theme-accent/90 text-white font-semibold shadow-elevated"
+              className="bg-theme-accent hover:bg-theme-accent/90 text-white font-semibold shadow-elevated px-7 py-3"
+            >
+              Explore Destinations
+            </Button>
+            <Button
+              to="/planner"
+              variant="secondary"
+              size="lg"
+              className="bg-white/95 hover:bg-white text-theme-primary font-semibold border-white/30 backdrop-blur-md px-7 py-3 shadow-md"
               icon={ArrowRight}
               iconPosition="right"
             >
               Plan My Trip
             </Button>
-            <Button
-              to="/explore"
-              variant="secondary"
-              size="lg"
-              className="bg-white/90 hover:bg-white text-theme-primary font-semibold border-white/30 backdrop-blur-md"
-            >
-              Explore Destinations
-            </Button>
           </div>
 
-          {/* EDITORIAL SEARCH PANEL */}
-          <div className="max-w-4xl mx-auto mt-10">
+          {/* 2. REFINED HERO SEARCH PANEL */}
+          <div className="max-w-4xl mx-auto mt-8 sm:mt-10">
             <form
               onSubmit={handleHeroSearch}
-              className="p-4 sm:p-5 rounded-2xl bg-theme-surface/95 backdrop-blur-md border border-theme-border shadow-elevated grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-left"
+              className="p-4 sm:p-5 rounded-3xl bg-theme-surface/98 backdrop-blur-lg border border-theme-border shadow-elevated grid grid-cols-1 md:grid-cols-12 gap-3 text-left"
             >
-              {/* Destination Dropdown */}
-              <div className="space-y-1">
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-theme-text-muted flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-theme-primary" />
-                  <span>Destination</span>
+              {/* Search Query Input */}
+              <div className="md:col-span-5 space-y-1">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-theme-text-muted flex items-center gap-1">
+                  <Search className="w-3 h-3 text-theme-primary" />
+                  <span>State, Destination or Attraction</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="e.g. Jaipur, Varanasi, Srisailam, Taj Mahal..."
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-theme-bg border border-theme-border text-xs sm:text-sm text-theme-text placeholder:text-theme-text-subtle focus:outline-none focus:ring-2 focus:ring-theme-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Travel Interest Filter */}
+              <div className="md:col-span-4 space-y-1">
+                <label className="text-[10px] font-bold uppercase tracking-wider text-theme-text-muted flex items-center gap-1">
+                  <Compass className="w-3 h-3 text-theme-primary" />
+                  <span>Travel Theme</span>
                 </label>
                 <select
-                  value={searchDestination}
-                  onChange={(e) => setSearchDestination(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-theme-bg border border-theme-border text-xs font-semibold text-theme-text focus:outline-none focus:ring-1 focus:ring-theme-primary cursor-pointer"
+                  value={selectedInterest}
+                  onChange={(e) => setSelectedInterest(e.target.value)}
+                  className="w-full px-3 py-2.5 rounded-xl bg-theme-bg border border-theme-border text-xs sm:text-sm font-medium text-theme-text focus:outline-none focus:ring-2 focus:ring-theme-primary cursor-pointer"
                 >
-                  {destinations.map((d) => (
-                    <option key={d.slug} value={d.slug}>
-                      {d.name} ({d.state})
-                    </option>
-                  ))}
+                  <option value="All">All Travel Themes</option>
+                  <option value="Heritage">Heritage & Historic Forts</option>
+                  <option value="Spirituality">Temples & Spiritual Shrines</option>
+                  <option value="Nature">Nature & Mountain Trails</option>
+                  <option value="Beach">Beaches & Coastal Getaways</option>
+                  <option value="Art & Craft">Local Artisan & Craft Masterclasses</option>
                 </select>
               </div>
 
-              {/* Duration Slider/Select */}
-              <div className="space-y-1">
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-theme-text-muted flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-theme-primary" />
-                  <span>Duration</span>
-                </label>
-                <select
-                  value={searchDays}
-                  onChange={(e) => setSearchDays(Number(e.target.value))}
-                  className="w-full px-3 py-2 rounded-xl bg-theme-bg border border-theme-border text-xs font-semibold text-theme-text focus:outline-none focus:ring-1 focus:ring-theme-primary cursor-pointer"
-                >
-                  <option value="1">1 Day (Excursion)</option>
-                  <option value="2">2 Days (Weekend)</option>
-                  <option value="3">3 Days (Recommended)</option>
-                  <option value="4">4 Days (Relaxed)</option>
-                  <option value="5">5 Days (Immersive)</option>
-                  <option value="7">7 Days (Full Circuit)</option>
-                </select>
-              </div>
-
-              {/* Sample Budget */}
-              <div className="space-y-1">
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-theme-text-muted flex items-center gap-1">
-                  <Wallet className="w-3 h-3 text-theme-primary" />
-                  <span>Estimated Budget</span>
-                </label>
-                <select
-                  value={searchBudget}
-                  onChange={(e) => setSearchBudget(Number(e.target.value))}
-                  className="w-full px-3 py-2 rounded-xl bg-theme-bg border border-theme-border text-xs font-semibold text-theme-text focus:outline-none focus:ring-1 focus:ring-theme-primary cursor-pointer"
-                >
-                  <option value="15000">₹15,000 (Budget Friendly)</option>
-                  <option value="30000">₹30,000 (Standard Comfort)</option>
-                  <option value="50000">₹50,000 (Premium Heritage)</option>
-                  <option value="80000">₹80,000 (Luxury Experiential)</option>
-                </select>
-              </div>
-
-              {/* Submit Button */}
-              <div className="sm:col-span-3 lg:col-span-1 flex items-end">
+              {/* Action Buttons */}
+              <div className="md:col-span-3 flex items-end gap-2">
                 <Button
                   type="submit"
                   variant="primary"
                   size="md"
-                  className="w-full justify-center h-[38px] text-xs font-semibold"
+                  className="flex-1 justify-center h-[42px] text-xs font-semibold bg-theme-primary hover:bg-theme-primary-hover text-white rounded-xl shadow-xs"
                 >
-                  Start Planner
+                  Search
                 </Button>
+
+                {/* Optional "Use My Location" Proximity Button */}
+                <button
+                  type="button"
+                  onClick={handleUseLocation}
+                  disabled={locationLoading}
+                  className="h-[42px] px-3 rounded-xl border border-theme-border bg-theme-bg hover:bg-theme-tag text-theme-text text-xs flex items-center justify-center transition-colors shrink-0"
+                  title="Find places near your current location"
+                >
+                  <Navigation className={`w-4 h-4 text-emerald-600 ${locationLoading ? "animate-spin" : ""}`} />
+                </button>
               </div>
             </form>
           </div>
@@ -164,344 +212,349 @@ export function Home() {
         </div>
       </section>
 
-      {/* 1.5 DISCOVERY HUBS SPOTLIGHT (States, Temples, Nearby) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          
-          {/* Card 1: Sacred Temples */}
-          <Link
-            to="/temples"
-            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-theme-accent/50 transition-all flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-theme-accent transition-colors">
-                Temples & Spiritual Journeys
-              </h3>
-              <p className="text-xs text-theme-text-muted leading-relaxed">
-                Tirumala, Srisailam, Meenakshi Amman, Kashi Vishwanath, Kedarnath, and Mahakaleshwar with verified etiquette, dress codes, and official portals.
-              </p>
+      {/* 3. BROWSE INDIA BY STATE & UNION TERRITORY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-theme-border pb-4">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-theme-primary-light text-theme-primary mb-1">
+              <Layers className="w-3.5 h-3.5" />
+              <span>36 States & Union Territories</span>
             </div>
-            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-theme-accent">
-              <span>Explore Pilgrimage Guide</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-text">
+              Browse India by Geographic Zone
+            </h2>
+          </div>
 
-          {/* Card 2: Browse 36 States & UTs */}
           <Link
             to="/states"
-            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-theme-primary/50 transition-all flex flex-col justify-between"
+            className="text-xs font-semibold text-theme-primary hover:underline flex items-center gap-1"
           >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-theme-primary-light text-theme-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-theme-primary transition-colors">
-                Browse All 36 States & UTs
-              </h3>
-              <p className="text-xs text-theme-text-muted leading-relaxed">
-                Complete geographic coverage across all 28 Indian States and 8 Union Territories with curated tourist circuits and monuments.
-              </p>
-            </div>
-            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-theme-primary">
-              <span>View Pan-India Directory</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
+            <span>View All 36 States & UTs Directory</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
+        </div>
 
-          {/* Card 3: Nearby & Directions */}
-          <Link
-            to="/nearby"
-            className="group p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-elevated hover:border-emerald-500/50 transition-all flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <MapPin className="w-6 h-6" />
+        {/* Zone Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+          {zones.map((zone) => (
+            <button
+              key={zone}
+              type="button"
+              onClick={() => setSelectedZone(zone)}
+              className={`px-4 py-2 rounded-xl font-medium shrink-0 transition-all ${
+                selectedZone === zone
+                  ? "bg-theme-primary text-white shadow-xs font-semibold"
+                  : "bg-theme-surface border border-theme-border text-theme-text-muted hover:text-theme-text hover:bg-theme-bg"
+              }`}
+            >
+              {zone} India
+            </button>
+          ))}
+        </div>
+
+        {/* States Grid in Zone */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {statesInZone.map((st) => (
+            <Link
+              key={st.id}
+              to={`/explore?state=${encodeURIComponent(st.name)}`}
+              className="group rounded-2xl overflow-hidden bg-theme-surface border border-theme-border shadow-xs hover:shadow-card transition-all flex flex-col justify-between"
+            >
+              <div className="relative h-40 w-full overflow-hidden bg-theme-bg">
+                <img
+                  src={st.image}
+                  alt={st.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-3 left-3 text-white">
+                  <h3 className="font-serif text-lg font-bold leading-tight">
+                    {st.name}
+                  </h3>
+                  <p className="text-[11px] text-amber-200">Capital: {st.capital}</p>
+                </div>
               </div>
-              <h3 className="font-serif text-xl font-bold text-theme-text group-hover:text-emerald-600 transition-colors">
-                Nearby Places & Directions
-              </h3>
-              <p className="text-xs text-theme-text-muted leading-relaxed">
-                Use voluntary location access to discover heritage sites and temples closest to you with 1-click external maps navigation.
-              </p>
-            </div>
-            <div className="pt-4 mt-2 border-t border-theme-border/60 flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
-              <span>Find Places Near Me</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
 
+              <div className="p-3.5 space-y-2">
+                <p className="text-xs text-theme-text-muted line-clamp-2">
+                  {st.description}
+                </p>
+                <div className="text-[11px] font-semibold text-theme-primary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span>Explore circuits in {st.name}</span>
+                  <ChevronRight className="w-3 h-3" />
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* 2. THREE-STEP "HOW IT WORKS" WORKFLOW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-          <span className="text-xs font-semibold uppercase tracking-widest text-theme-accent">
-            Designed for Meaningful Travel
-          </span>
-          <h2 className="text-3xl font-serif font-bold text-theme-text">
-            From Inspiration to a Reality-Checked Itinerary
-          </h2>
-          <p className="text-sm text-theme-text-muted">
-            Three simple steps to curate authentic Indian trips without hidden costs or chaotic planning.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Step 1 */}
-          <div className="p-8 rounded-2xl bg-theme-surface border border-theme-border shadow-sm hover:shadow-card transition-all space-y-4 relative">
-            <span className="text-4xl font-serif font-bold text-theme-primary/15 absolute top-6 right-6">
-              01
-            </span>
-            <div className="w-12 h-12 rounded-xl bg-theme-primary-light text-theme-primary flex items-center justify-center">
-              <Compass className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-serif font-bold text-theme-text">
-              Discover Authentic India
-            </h3>
-            <p className="text-xs text-theme-text-muted leading-relaxed">
-              Explore curated Indian destinations with illustrative daily budgets, seasonal highlights, and cultural heritage insights.
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="p-8 rounded-2xl bg-theme-surface border border-theme-border shadow-sm hover:shadow-card transition-all space-y-4 relative">
-            <span className="text-4xl font-serif font-bold text-theme-primary/15 absolute top-6 right-6">
-              02
-            </span>
-            <div className="w-12 h-12 rounded-xl bg-theme-accent-light text-theme-accent flex items-center justify-center">
-              <BedDouble className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-serif font-bold text-theme-text">
-              Choose Stays & Experiences
-            </h3>
-            <p className="text-xs text-theme-text-muted leading-relaxed">
-              Compare boutique homestays, royal havelis, and community-led workshops. Add your favorites to your working trip blueprint.
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="p-8 rounded-2xl bg-theme-surface border border-theme-border shadow-sm hover:shadow-card transition-all space-y-4 relative">
-            <span className="text-4xl font-serif font-bold text-theme-primary/15 absolute top-6 right-6">
-              03
-            </span>
-            <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-serif font-bold text-theme-text">
-              Generate & Save Itinerary
-            </h3>
-            <p className="text-xs text-theme-text-muted leading-relaxed">
-              Receive a transparent morning-afternoon-evening plan with itemized room, dining, and transit calculations. Modify slots and print.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 3. ASYMMETRIC EDITORIAL DESTINATIONS SPOTLIGHT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b border-theme-border">
+      {/* 4. FEATURED CURATED DESTINATIONS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-theme-border pb-4">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-theme-accent">
-              Curated Highlights
+            <span className="text-xs font-semibold uppercase tracking-wider text-theme-accent">
+              Curated Editorial Highlights
             </span>
             <h2 className="text-3xl font-serif font-bold text-theme-text mt-1">
-              Featured Regional Destinations
+              Iconic Indian Heritage Circuits
             </h2>
-            <p className="text-sm text-theme-text-muted mt-1">
-              Immerse yourself in Rajasthan's forts, Kerala's tea mist, and the eternal spiritual rhythm of Varanasi.
+            <p className="text-xs sm:text-sm text-theme-text-muted mt-1 max-w-xl">
+              Authentic architecture, vibrant craft communities, and transparent estimated daily budgets.
             </p>
           </div>
 
-          <Button
+          <Link
             to="/explore"
-            variant="secondary"
-            size="md"
-            icon={ArrowRight}
-            iconPosition="right"
+            className="text-xs font-semibold text-theme-primary hover:underline flex items-center gap-1"
           >
-            Browse All 8 Destinations
-          </Button>
+            <span>Explore All {destinations.length} Destinations</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        {/* Asymmetric Grid */}
+        {/* Featured Grid with 100% Accurate Verified Photographs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredDestination && (
-            <DestinationCard destination={featuredDestination} featured={true} />
-          )}
-          {secondaryDestinations.map((dest) => (
+          {featuredDestinations.map((dest) => (
             <DestinationCard key={dest.slug} destination={dest} />
           ))}
         </div>
       </section>
 
-      {/* 4. TRAVEL COLLECTIONS */}
-      <section className="bg-theme-surface py-16 border-y border-theme-border transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-theme-accent">
-              Themed Portfolios
-            </span>
-            <h2 className="text-3xl font-serif font-bold text-theme-text">
-              Curated Travel Collections
-            </h2>
-            <p className="text-sm text-theme-text-muted">
-              Choose your travel mood—from regal palaces to coastal breezes and mountain ridgelines.
-            </p>
+      {/* 5. TEMPLES & SPIRITUAL JOURNEYS SPOTLIGHT */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="p-8 sm:p-10 rounded-3xl bg-amber-950/10 dark:bg-amber-950/30 border border-amber-500/20 shadow-sm space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-amber-500/20 text-amber-800 dark:text-amber-300">
+                <Landmark className="w-3.5 h-3.5" />
+                <span>Sacred India & Pilgrimage Etiquette</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-text">
+                Temples & Spiritual Journeys
+              </h2>
+              <p className="text-xs sm:text-sm text-theme-text-muted leading-relaxed">
+                Discover the architectural grandeur and sacred serenity of India’s most revered Jyotirlingas, Shakti Peethas, and Divya Desams with verified visitor guidelines and direct official administration links.
+              </p>
+            </div>
+
+            <Link
+              to="/temples"
+              className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition-colors flex items-center gap-1.5 self-start md:self-auto shrink-0 shadow-sm"
+            >
+              <span>Explore All Temples</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {collections.map((coll) => (
+          {/* Temples Cards Showcase */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            {featuredTemples.map((temple) => (
+              <TempleCard key={temple.id} temple={temple} />
+            ))}
+          </div>
+
+          {/* Official Portal Guarantee Notice */}
+          <div className="p-3 bg-white/70 dark:bg-stone-900/70 border border-amber-500/20 rounded-xl text-[11px] text-theme-text-muted flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>
+              <strong>Official Portal Guarantee:</strong> YatraVista redirects all seva booking and darshan passes to verified government Devasthanams and temple administration trusts without ticket scalping.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. SAMPLE STAYS & LOCAL EXPERIENCES */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        {/* Heritage Stays */}
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-theme-border pb-4">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-theme-accent">
+                Demonstration Accommodations
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-text mt-1">
+                Authentic Heritage Stays & Homestays
+              </h2>
+            </div>
+            <Link
+              to="/stays"
+              className="text-xs font-semibold text-theme-primary hover:underline flex items-center gap-1"
+            >
+              <span>View All Stays</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {sampleStays.map((stay) => (
+              <StayCard key={stay.id} stay={stay} />
+            ))}
+          </div>
+        </div>
+
+        {/* Local Experiences */}
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-theme-border pb-4">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-theme-accent">
+                Artisan Immersions & Guided Walks
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-text mt-1">
+                Connect Directly with Local Craft Masters
+              </h2>
+            </div>
+            <Link
+              to="/experiences"
+              className="text-xs font-semibold text-theme-primary hover:underline flex items-center gap-1"
+            >
+              <span>View All Experiences</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sampleExperiences.map((exp) => (
               <div
-                key={coll.id}
-                className="group relative rounded-2xl overflow-hidden shadow-card border border-theme-border bg-theme-bg flex flex-col justify-end min-h-[340px] p-6 hover:shadow-elevated transition-all"
+                key={exp.id}
+                className="p-6 rounded-3xl bg-theme-surface border border-theme-border shadow-xs hover:shadow-card transition-all flex flex-col sm:flex-row gap-5"
               >
                 <img
-                  src={coll.image}
-                  alt={coll.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  src={exp.image}
+                  alt={exp.title}
+                  className="w-full sm:w-44 h-40 object-cover rounded-2xl shrink-0"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="flex-1 flex flex-col justify-between space-y-2">
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-theme-accent-light text-theme-accent">
+                        {exp.category}
+                      </span>
+                      <span className="text-theme-text-muted font-medium">{exp.duration}</span>
+                    </div>
+                    <h3 className="text-base font-serif font-bold text-theme-text">
+                      {exp.title}
+                    </h3>
+                    <p className="text-xs text-theme-text-muted leading-relaxed mt-1 line-clamp-2">
+                      {exp.description}
+                    </p>
+                    <span className="text-[11px] text-theme-text-subtle block mt-1">
+                      Hosted by: {exp.provider}
+                    </span>
+                  </div>
 
-                <div className="relative z-10 space-y-2 text-white">
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-white/20 backdrop-blur-md">
-                    {coll.badge}
-                  </span>
-                  <h3 className="text-xl font-serif font-bold text-white">
-                    {coll.title}
-                  </h3>
-                  <p className="text-xs text-white/80 leading-relaxed line-clamp-2 font-sans">
-                    {coll.subtitle}
-                  </p>
-                  <Link
-                    to={`/explore?region=${coll.id === 'coastal-retreats' ? 'West' : coll.id === 'mountain-trails' ? 'South' : 'All'}`}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber-300 group-hover:underline pt-2"
-                  >
-                    <span>Explore Collection</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <div className="pt-3 border-t border-theme-border/60 flex items-center justify-between">
+                    <span className="text-sm font-bold text-theme-primary font-serif">
+                      ₹{exp.pricePerPerson?.toLocaleString('en-IN')}
+                      <span className="text-[10px] text-theme-text-muted font-normal"> / person</span>
+                    </span>
+                    <Button
+                      to={`/planner?destination=${exp.destinationSlug}`}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      Add to Trip
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
       </section>
 
-      {/* 5. LOCAL BUSINESS & ARTISAN SPOTLIGHT */}
+      {/* 7. THREE-STEP USER WORKFLOW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 md:p-12 rounded-3xl bg-theme-primary text-white shadow-elevated relative overflow-hidden">
-          
-          {/* Subtle background motif */}
-          <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-semibold uppercase tracking-wider">
-                <HeartHandshake className="w-4 h-4" />
-                <span>Responsible Local Tourism</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-serif font-bold leading-tight">
-                Empowering Grassroots Artisans & Family Stays
-              </h2>
-
-              <p className="text-sm text-white/80 leading-relaxed max-w-xl">
-                Tourism should nurture the communities that host us. By highlighting multi-generational handloom weavers in Varanasi, cashew distillers in Goa, and organic coffee growers in Coorg, YatraVista connects travelers directly with the people who preserve India’s intangible cultural legacy.
-              </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 text-xs">
-                <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10">
-                  <span className="block text-amber-300 font-bold text-lg font-serif">100%</span>
-                  <span className="text-white/80">Direct provider clarity</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10">
-                  <span className="block text-amber-300 font-bold text-lg font-serif">Zero</span>
-                  <span className="text-white/80">Hidden commissions</span>
-                </div>
-                <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 col-span-2 sm:col-span-1">
-                  <span className="block text-amber-300 font-bold text-lg font-serif">GI-Tagged</span>
-                  <span className="text-white/80">Living Indian crafts</span>
-                </div>
-              </div>
-
-              <div className="pt-4">
-                <Button
-                  to="/experiences"
-                  variant="secondary"
-                  size="md"
-                  className="bg-white text-theme-primary hover:bg-white/90 font-semibold"
-                >
-                  Discover Local Experiences
-                </Button>
-              </div>
-            </div>
-
-            {/* Right Card with quote */}
-            <div className="lg:col-span-5">
-              <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 space-y-4 text-white">
-                <div className="inline-block px-2 py-0.5 rounded text-[10px] uppercase font-bold bg-amber-300/20 text-amber-300">
-                  Demonstration Artisan Profile
-                </div>
-                <p className="italic font-serif text-base text-amber-100 leading-relaxed">
-                  “When a traveler sits on our handloom veranda in Madanpura and learns how zari silk takes 15 days to craft, they don’t just buy a textile—they honor three generations of our family’s devotion.”
-                </p>
-                <div className="flex items-center gap-3 pt-2 border-t border-white/10 text-xs">
-                  <div className="w-8 h-8 rounded-full bg-theme-accent text-white flex items-center justify-center font-bold">
-                    M
-                  </div>
-                  <div>
-                    <span className="font-semibold block">Mohammed Ansari</span>
-                    <span className="text-white/70 text-[11px]">Illustrative Master Handloom Weaver (Varanasi Demonstration)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* 6. SMART PLANNER CALLOUT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 md:p-12 rounded-3xl bg-theme-surface border border-theme-border shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-3 max-w-xl">
+        <div className="p-8 sm:p-12 rounded-3xl bg-theme-surface border border-theme-border shadow-card space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-semibold uppercase tracking-widest text-theme-accent">
-              College Demonstration Prototype
+              Frictionless Travel Framework
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-text">
-              Ready to create your custom itinerary?
+              How YatraVista Works
             </h2>
-            <p className="text-sm text-theme-text-muted leading-relaxed">
-              Test our deterministic rule-based planner with sample stays, estimated meals, transit rates, and attraction tickets. Save and print your plan with zero sign-up required.
+            <p className="text-xs sm:text-sm text-theme-text-muted">
+              Three connected steps to discover, calculate, and coordinate authentic Indian journeys.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Button
-              to="/planner"
-              variant="primary"
-              size="lg"
-              icon={Sparkles}
-              iconPosition="right"
-              className="font-semibold shadow-soft"
-            >
-              Open Trip Planner
-            </Button>
-            <Button
-              to="/about"
-              variant="secondary"
-              size="lg"
-            >
-              About the SIH Project
-            </Button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div className="p-6 rounded-2xl bg-theme-bg/60 border border-theme-border/60 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-theme-primary-light text-theme-primary font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-xs">
+                1
+              </div>
+              <h3 className="font-serif font-bold text-theme-text text-base">
+                Discover Authentic India
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Filter destinations across 36 States & UTs by geographic zone, heritage themes, temples, and verified attractions.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-theme-bg/60 border border-theme-border/60 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-theme-accent-light text-theme-accent font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-xs">
+                2
+              </div>
+              <h3 className="font-serif font-bold text-theme-text text-base">
+                Build & Optimize Itineraries
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Generate 1-7 day schedules with transparent math across lodging, dining, local transport, and activity slots.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-theme-bg/60 border border-theme-border/60 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 font-serif font-bold text-lg flex items-center justify-center mx-auto shadow-xs">
+                3
+              </div>
+              <h3 className="font-serif font-bold text-theme-text text-base">
+                Save & Request Bookings
+              </h3>
+              <p className="text-xs text-theme-text-muted leading-relaxed">
+                Bookmark places to your wishlist, save plans, and submit demonstration booking requests directly to verified hosts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. INSPIRING FINAL CALL TO ACTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl overflow-hidden bg-theme-nav text-white p-8 sm:p-12 md:p-16 text-center shadow-xl border border-white/10">
+          <img
+            src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1600&q=80"
+            alt="Scenic India"
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+          />
+          <div className="relative z-10 max-w-2xl mx-auto space-y-5">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+              Ready to embark on your next Indian odyssey?
+            </h2>
+            <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
+              Create a custom multi-day itinerary with transparent budget estimates, verified temple etiquette, and authentic heritage stays.
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center gap-3">
+              <Button
+                to="/planner"
+                variant="primary"
+                size="lg"
+                className="bg-theme-accent hover:bg-theme-accent/90 text-white font-semibold px-8 py-3.5 shadow-elevated"
+              >
+                Launch Smart Trip Planner
+              </Button>
+              <Button
+                to="/temples"
+                variant="secondary"
+                size="lg"
+                className="bg-white/90 hover:bg-white text-theme-primary font-semibold px-6 py-3.5"
+              >
+                Explore Sacred Temples
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -509,3 +562,4 @@ export function Home() {
     </div>
   );
 }
+export default Home;

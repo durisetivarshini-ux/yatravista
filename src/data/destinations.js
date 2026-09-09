@@ -107,7 +107,8 @@ export const destinations = [
     fullDescription: "Founded in 1559 by Maharana Udai Singh II, Udaipur is the crown jewel of Mewar with its labyrinthine City Palace, Lake Pichola ghats, and romantic boat cruises.",
     heroImage: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80"
     ],
     travelInterests: ["Heritage", "Romance", "Lakes", "Art & Craft"],
     suggestedDuration: "3 - 4 Days",
@@ -130,9 +131,10 @@ export const destinations = [
     tagline: "The Sun City & The Mighty Blue Fortress",
     shortDescription: "Indigo-painted houses sprawling beneath the towering ramparts of Mehrangarh Fort.",
     fullDescription: "Jodhpur stands at the edge of the Thar Desert, famed for its indigo alleys, historic stepwells like Toorji Ka Jhalra, and royal cenotaphs of Jaswant Thada.",
-    heroImage: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1200&q=80",
+    heroImage: "https://images.unsplash.com/photo-1568454537842-d933259bb258?auto=format&fit=crop&w=1200&q=80",
     gallery: [
-      "https://images.unsplash.com/photo-1568454537842-d933259bb258?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
     ],
     travelInterests: ["Heritage", "Culture", "Photography", "Food"],
     suggestedDuration: "2 - 3 Days",
