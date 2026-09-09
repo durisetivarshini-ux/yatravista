@@ -6,22 +6,22 @@
   :root,
   [data-theme="royal-sandstone"],
   [data-theme="heritage"] {
-    --color-bg: #FAF7F2;
+    --color-bg: #FAF7F1;            /* Warm Ivory */
     --color-surface: #FFFFFF;
     --color-card: #FFFFFF;
-    --color-border: #E8E2D5;
-    --color-primary: #1C3B2B;        /* Deep Forest Green */
-    --color-primary-hover: #12281D;
-    --color-primary-light: #EBF2EC;
-    --color-accent: #C59A45;         /* Muted Gold */
-    --color-accent-light: #FBF4E4;
-    --color-text: #1E2522;           /* Deep Charcoal */
-    --color-text-muted: #57645D;
-    --color-text-subtle: #89968F;
-    --color-tag: #F0EDE4;
-    --color-nav: #162E22;
-    --shadow-color: rgba(28, 59, 43, 0.06);
-    --shadow-color-lg: rgba(28, 59, 43, 0.12);
+    --color-border: #E8E2D8;
+    --color-primary: #123C3A;        /* Deep Teal */
+    --color-primary-hover: #0B2928;
+    --color-primary-light: #E7F0EF;
+    --color-accent: #B6492D;         /* Restrained Terracotta */
+    --color-accent-light: #FBF0ED;
+    --color-text: #202826;           /* Charcoal */
+    --color-text-muted: #56635F;     /* Muted Charcoal */
+    --color-text-subtle: #879490;
+    --color-tag: #F2ECE1;
+    --color-nav: #0E302E;
+    --shadow-color: rgba(18, 60, 58, 0.06);
+    --shadow-color-lg: rgba(18, 60, 58, 0.12);
   }
 
   [data-theme="kerala-rainforest"] {
@@ -94,9 +94,9 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  h1, h2, h3, h4, .font-editorial {
-    font-family: 'Playfair Display', Georgia, serif;
-    letter-spacing: -0.015em;
+  h1, h2, h3, h4, .font-editorial, .font-heading {
+    font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.025em;
   }
 
   /* Custom scrollbar */

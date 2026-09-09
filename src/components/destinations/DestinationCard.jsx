@@ -120,7 +120,7 @@ export function DestinationCard({
             to={`/destinations/${destination.slug}`} 
             className="block group-hover:text-theme-primary transition-colors focus:outline-none"
           >
-            <h3 className="text-2xl font-serif font-bold text-theme-text leading-tight mb-1">
+            <h3 className="text-2xl font-heading font-bold text-theme-text leading-tight mb-1">
               {destination.name}
             </h3>
             <p className="text-xs font-medium text-theme-accent italic mb-2.5 line-clamp-1">

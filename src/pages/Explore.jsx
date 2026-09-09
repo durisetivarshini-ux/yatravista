@@ -54,10 +54,6 @@ const VISUAL_CATEGORIES = [
   },
 ];
 
-// Verified Working Indian Heritage Hero Photography with Fallbacks
-const PRIMARY_HERO_IMAGE = "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1920&q=85";
-const FALLBACK_HERO_IMAGE = "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=85";
-
 export function Explore() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { comparedDestinations } = useTrip();
@@ -74,18 +70,6 @@ export function Explore() {
   const [selectedInterest, setSelectedInterest] = useState(initialInterest);
   const [sortBy, setSortBy] = useState(initialSort);
   const [isComparisonOpen, setIsComparisonOpen] = useState(false);
-  
-  // Hero Image Error and Fallback State
-  const [heroImgSrc, setHeroImgSrc] = useState(PRIMARY_HERO_IMAGE);
-  const [heroImgError, setHeroImgError] = useState(false);
-
-  const handleHeroImageError = () => {
-    if (heroImgSrc === PRIMARY_HERO_IMAGE) {
-      setHeroImgSrc(FALLBACK_HERO_IMAGE);
-    } else {
-      setHeroImgError(true);
-    }
-  };
 
   // Sync state changes back into URL params
   useEffect(() => {
@@ -162,66 +146,33 @@ export function Explore() {
   return (
     <div className="space-y-8 pb-16">
       
-      {/* 1. BRIGHTENED & REBALANCED PHOTO HERO */}
-      <section className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex items-center justify-center overflow-hidden bg-theme-primary border-b border-theme-border">
-        
-        {/* Background Photograph with Natural Colours & Clear Skies */}
-        {!heroImgError ? (
-          <div className="absolute inset-0 z-0">
-            <img
-              src={heroImgSrc}
-              alt={heroImgSrc === PRIMARY_HERO_IMAGE ? "Amber Fort Ramparts, Jaipur, Rajasthan" : "Taj Mahal Citadel, Agra, Uttar Pradesh"}
-              onError={handleHeroImageError}
-              className="w-full h-full object-cover object-[center_35%] transform scale-100"
-            />
-            {/* Subtle & Clean Neutral Gradient (Preserves Sandstone & Sky Vibrancy while guaranteeing text legibility) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20" />
-          </div>
-        ) : (
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-theme-primary via-theme-primary/90 to-theme-nav" />
-        )}
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 w-full flex flex-col items-center text-center">
-          
-          {/* Curated Understated Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-[0.12em] uppercase font-sans bg-black/40 text-[#F0CF88] backdrop-blur-md border border-[#F0CF88]/30 mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#F0CF88]" />
-            <span>Curated Indian Destinations</span>
+      {/* 1. COORDINATED COMPACT EDITORIAL HEADER */}
+      <section className="bg-theme-surface border-b border-theme-border py-8 sm:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-2 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-[0.14em] uppercase font-sans bg-theme-primary-light text-theme-primary border border-theme-primary/15">
+              <Sparkles className="w-3.5 h-3.5 text-theme-accent" />
+              <span>Curated Indian Destinations</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-theme-primary tracking-tight leading-tight">
+              Explore the Wonders of <span className="text-theme-accent">India</span>
+            </h1>
+            <p className="text-sm sm:text-base text-theme-text-muted max-w-2xl font-sans leading-relaxed">
+              Discover heritage cities, sacred temples, mountain escapes and local experiences across all 28 states and 8 union territories.
+            </p>
           </div>
 
-          {/* Main Title: Balanced proportions (56-64px desktop, 34-40px mobile) */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-serif font-semibold text-white tracking-tight leading-[1.14] max-w-[800px] text-center drop-shadow-sm">
-            Explore the Wonders of <span className="text-[#F0CF88]">India</span>
-          </h1>
-
-          {/* Short Supporting Subtitle: 18-20px desktop, 16-18px mobile */}
-          <p className="mt-4 text-base sm:text-lg md:text-[19px] text-[#FFF9EF]/90 max-w-[620px] font-sans font-normal leading-relaxed text-balance drop-shadow-xs">
-            Heritage cities, sacred temples and unforgettable local experiences.
-          </p>
-
-          {/* Destination Comparison Floating Badge if selected */}
+          {/* Comparison Modal Trigger Button */}
           {comparedDestinations.length > 0 && (
-            <div className="mt-4">
-              <button
-                type="button"
-                onClick={() => setIsComparisonOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-theme-primary text-white text-xs font-semibold shadow-elevated hover:bg-theme-primary-hover transition-all cursor-pointer"
-              >
-                <Scale className="w-4 h-4 text-theme-accent" />
-                <span>Compare Destinations ({comparedDestinations.length}/3)</span>
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => setIsComparisonOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-theme-primary text-white text-xs font-semibold shadow-elevated hover:bg-theme-primary-hover transition-all cursor-pointer self-start md:self-auto shrink-0"
+            >
+              <Scale className="w-4 h-4 text-theme-accent" />
+              <span>Compare Destinations ({comparedDestinations.length}/3)</span>
+            </button>
           )}
-
-          {/* Accurate Verified Location Credit */}
-          {!heroImgError && (
-            <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
-              <MapPin className="w-3.5 h-3.5 text-[#F0CF88]" />
-              <span>{heroImgSrc === PRIMARY_HERO_IMAGE ? "Amber Fort Ramparts, Jaipur, Rajasthan" : "Taj Mahal Citadel, Agra, Uttar Pradesh"}</span>
-            </div>
-          )}
-
         </div>
       </section>
 
@@ -249,7 +200,7 @@ export function Explore() {
         {/* 3. VISUAL TRAVEL CATEGORIES ROW */}
         <section aria-label="Browse by travel categories">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base sm:text-lg font-serif font-bold text-theme-text flex items-center gap-2">
+            <h2 className="text-base sm:text-lg font-heading font-bold text-theme-primary flex items-center gap-2">
               <Compass className="w-4 h-4 text-theme-primary" />
               <span>Browse by Travel Theme</span>
             </h2>
@@ -283,7 +234,7 @@ export function Explore() {
                         <Icon className="w-3.5 h-3.5" />
                         <span className="text-[10px] font-semibold uppercase tracking-wider">Explore</span>
                       </div>
-                      <h3 className="text-xs sm:text-sm font-serif font-bold leading-tight line-clamp-1">
+                      <h3 className="text-xs sm:text-sm font-heading font-bold leading-tight line-clamp-1">
                         {cat.title}
                       </h3>
                       <p className="text-[10px] text-white/80 font-sans line-clamp-1">
@@ -335,7 +286,7 @@ export function Explore() {
                         </span>
                       )}
                     </div>
-                    <h3 className="text-xs sm:text-sm font-serif font-bold leading-tight line-clamp-1">
+                    <h3 className="text-xs sm:text-sm font-heading font-bold leading-tight line-clamp-1">
                       {cat.title}
                     </h3>
                     <p className="text-[10px] text-white/80 font-sans line-clamp-1">

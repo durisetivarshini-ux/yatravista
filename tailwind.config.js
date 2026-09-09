@@ -25,8 +25,9 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        heading: ['"Manrope"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         sans: ['"Inter"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        serif: ['"Manrope"', 'Georgia', 'serif'],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px var(--shadow-color)',

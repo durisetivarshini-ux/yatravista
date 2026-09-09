@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <rect width="48" height="48" rx="12" fill="#1C382A"/>
-  <!-- Heritage Arch & Sun / YatraVista Motif -->
-  <path d="M12 40V22C12 15.3726 17.3726 10 24 10C30.6274 10 36 15.3726 36 22V40" stroke="#FDFBF7" stroke-width="2.5" stroke-linecap="round" fill="#FDFBF7" fill-opacity="0.12"/>
-  <path d="M20 10C22 7 24 5 24 5C24 5 26 7 28 10" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="24" cy="18" r="3.5" fill="#D4AF37"/>
-  <path d="M15 40C15 34 21 33 24 30C27 27 33 27 33 22" stroke="#FDFBF7" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="10" y1="40" x2="38" y2="40" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+  <rect width="48" height="48" rx="12" fill="#123C3A"/>
+  <circle cx="24" cy="18" r="5" fill="#B6492D" />
+  <path d="M17 18C17 14.134 20.134 11 24 11C27.866 11 31 14.134 31 18" stroke="#FAF7F1" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.8"/>
+  <path d="M14 15L24 28L34 15" stroke="#FAF7F1" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 28V37C24 37 28 35 32 37" stroke="#FAF7F1" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="37" r="2" fill="#B6492D" />
 </svg>

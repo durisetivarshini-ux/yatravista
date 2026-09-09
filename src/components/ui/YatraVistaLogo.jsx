@@ -1,58 +1,71 @@
 import React from "react";
 
-export function YatraVistaLogo({ size = "md", className = "", showTagline = true, inverted = false }) {
+/**
+ * YatraVistaLogo - Modern Indian Travel Editorial Brand Identity
+ * Monogram: "YV" journey path with rising sun motif
+ * Typography: Manrope wordmark with terracotta accent
+ */
+export function YatraVistaLogo({ size = "md", className = "", showTagline = true, inverted = false, iconOnly = false }) {
   const sizeMap = {
-    sm: { icon: "w-8 h-8", title: "text-lg", tag: "text-[8px]" },
-    md: { icon: "w-10 h-10", title: "text-2xl", tag: "text-[9px]" },
-    lg: { icon: "w-14 h-14", title: "text-3xl", tag: "text-[11px]" }
+    sm: { icon: "w-8 h-8", title: "text-lg", tag: "text-[8.5px]" },
+    md: { icon: "w-10 h-10", title: "text-2xl", tag: "text-[9.5px]" },
+    lg: { icon: "w-13 h-13", title: "text-3xl", tag: "text-[11px]" }
   };
 
   const currentSize = sizeMap[size] || sizeMap.md;
 
-  return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
-      {/* SVG Icon Badge */}
-      <div className={`${currentSize.icon} shrink-0 rounded-xl bg-theme-primary flex items-center justify-center text-white shadow-soft transition-transform group-hover:scale-105 border border-white/10`}>
-        <svg viewBox="0 0 48 48" className="w-full h-full p-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Heritage Arch (Jharokha/Chhatri outline) */}
-          <path
-            d="M12 40V22C12 15.3726 17.3726 10 24 10C30.6274 10 36 15.3726 36 22V40"
-            stroke="#FDFBF7"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="currentColor"
-            fillOpacity="0.15"
-          />
-          {/* Pointed Arch Peak Detail */}
-          <path
-            d="M20 10C22 7 24 5 24 5C24 5 26 7 28 10"
-            stroke="#D4AF37"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {/* Golden Sun / Lotus Crest */}
-          <circle cx="24" cy="18" r="3.5" fill="#D4AF37" />
-          {/* Winding Scenic Journey Path */}
-          <path
-            d="M15 40C15 34 21 33 24 30C27 27 33 27 33 22"
-            stroke="#FDFBF7"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeDasharray="1 0"
-          />
-          {/* Base Platform */}
-          <line x1="10" y1="40" x2="38" y2="40" stroke="#D4AF37" strokeWidth="2.5" strokeLinecap="round" />
-        </svg>
-      </div>
+  const IconSVG = (
+    <div className={`${currentSize.icon} shrink-0 rounded-xl ${inverted ? "bg-white/10 text-white" : "bg-[#123C3A] text-white"} flex items-center justify-center shadow-soft transition-transform group-hover:scale-105 border ${inverted ? "border-white/20" : "border-[#123C3A]/10"}`}>
+      <svg viewBox="0 0 48 48" className="w-full h-full p-2" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Subtle rising sun arc behind the valley/journey */}
+        <circle cx="24" cy="18" r="5" fill="#B6492D" />
+        <path
+          d="M17 18C17 14.134 20.134 11 24 11C27.866 11 31 14.134 31 18"
+          stroke="#FAF7F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeDasharray="2 2"
+          opacity="0.8"
+        />
 
-      {/* Brand Typography */}
+        {/* Clean flowing "YV" journey monogram */}
+        {/* Left branch of Y turning into a gentle flowing path */}
+        <path
+          d="M14 15L24 28L34 15"
+          stroke="#FAF7F1"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Stem of Y flowing downward like a winding road into a V-valley apex */}
+        <path
+          d="M24 28V37C24 37 28 35 32 37"
+          stroke="#FAF7F1"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Terracotta road horizon marker */}
+        <circle cx="32" cy="37" r="2" fill="#B6492D" />
+      </svg>
+    </div>
+  );
+
+  if (iconOnly) {
+    return <div className={`inline-flex items-center ${className}`}>{IconSVG}</div>;
+  }
+
+  return (
+    <div className={`flex items-center gap-3 select-none ${className}`}>
+      {IconSVG}
+
+      {/* Wordmark */}
       <div className="flex flex-col">
-        <span className={`${currentSize.title} font-serif font-bold tracking-tight leading-none ${inverted ? "text-white" : "text-theme-primary"}`}>
-          Yatra<span className="text-theme-accent italic font-normal">Vista</span>
+        <span className={`${currentSize.title} font-heading font-extrabold tracking-tight leading-none ${inverted ? "text-white" : "text-[#123C3A]"}`}>
+          Yatra<span className="text-[#B6492D] font-semibold">Vista</span>
         </span>
         {showTagline && (
-          <span className={`${currentSize.tag} tracking-widest uppercase font-sans font-semibold mt-0.5 ${inverted ? "text-white/75" : "text-theme-text-muted"}`}>
+          <span className={`${currentSize.tag} tracking-[0.14em] uppercase font-sans font-semibold mt-1 ${inverted ? "text-white/70" : "text-[#56635F]"}`}>
             Curated Journeys of India
           </span>
         )}
@@ -60,4 +73,5 @@ export function YatraVistaLogo({ size = "md", className = "", showTagline = true
     </div>
   );
 }
+
 export default YatraVistaLogo;
