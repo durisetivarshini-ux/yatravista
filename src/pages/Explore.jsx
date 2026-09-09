@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Compass, Scale, Sparkles, MapPin, Landmark, Mountain, Waves, Palette, Flame, ArrowRight } from "lucide-react";
+import { Compass, Scale, Sparkles, MapPin, Landmark, Mountain, Waves, Palette, Flame } from "lucide-react";
 import { destinations } from "../data/destinations";
 import { DestinationCard } from "../components/destinations/DestinationCard";
 import { DestinationFilters } from "../components/destinations/DestinationFilters";
@@ -146,45 +146,42 @@ export function Explore() {
   return (
     <div className="space-y-8 pb-16">
       
-      {/* 1. EDITORIAL PHOTO HERO SECTION */}
-      <section className="relative min-h-[400px] sm:min-h-[440px] lg:min-h-[480px] flex items-center justify-center overflow-hidden bg-theme-surface border-b border-theme-border">
+      {/* 1. BRIGHTENED & REBALANCED PHOTO HERO */}
+      <section className="relative min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex items-center justify-center overflow-hidden bg-theme-surface border-b border-theme-border">
         
-        {/* Background Photograph */}
+        {/* Background Photograph with Natural Colours & Clear Skies */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1920&q=85"
-            alt="Amber Fort Ramparts, Jaipur, Rajasthan"
-            className="w-full h-full object-cover object-[center_35%] transform scale-105 transition-transform duration-1000"
+            src="https://images.unsplash.com/photo-1600100397608-f010f446a1a4?auto=format&fit=crop&w=1920&q=85"
+            alt="Jal Mahal floating on Man Sagar Lake, Jaipur, Rajasthan"
+            className="w-full h-full object-cover object-[center_40%] transform scale-100"
           />
-          {/* Clean Neutral Dark Gradient for High-Contrast Readability without Muddy Tone */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/35" />
+          {/* Subtle & Clean Neutral Gradient (Preserves Sky & Water Vibrancy while guaranteeing text legibility) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20" />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 w-full flex flex-col items-center text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 w-full flex flex-col items-center text-center">
           
           {/* Curated Understated Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-[0.12em] uppercase font-sans bg-black/40 text-[#F0CF88] backdrop-blur-md border border-[#F0CF88]/30 mb-5 sm:mb-6 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-[0.12em] uppercase font-sans bg-black/40 text-[#F0CF88] backdrop-blur-md border border-[#F0CF88]/30 mb-4 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#F0CF88]" />
             <span>Curated Indian Destinations</span>
           </div>
 
-          {/* Main Title: Balanced 2-line structure with Champagne Gold accent */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-serif font-semibold text-[#FFF9EF] tracking-tight leading-[1.1] max-w-[900px] text-center drop-shadow-sm">
-            <span className="inline sm:block">Explore the Wonders</span>
-            <span className="inline sm:block">
-              of <span className="text-[#F0CF88]">India</span>
-            </span>
+          {/* Main Title: Balanced proportions (56-64px desktop, 34-40px mobile) */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-serif font-semibold text-white tracking-tight leading-[1.14] max-w-[800px] text-center drop-shadow-sm">
+            Explore the Wonders of <span className="text-[#F0CF88]">India</span>
           </h1>
 
-          {/* Supporting Subtitle: 20-24px below heading with relaxed line height */}
-          <p className="mt-5 sm:mt-6 text-[17px] sm:text-[19px] md:text-[21px] text-[#FFF9EF]/90 max-w-[680px] font-sans font-normal leading-[1.6] text-balance drop-shadow-xs">
-            Discover heritage cities, sacred temples, mountain escapes and local experiences.
+          {/* Short Supporting Subtitle: 18-20px desktop, 16-18px mobile */}
+          <p className="mt-4 text-base sm:text-lg md:text-[19px] text-[#FFF9EF]/90 max-w-[620px] font-sans font-normal leading-relaxed text-balance drop-shadow-xs">
+            Heritage cities, sacred temples and unforgettable local experiences.
           </p>
 
           {/* Destination Comparison Floating Badge if selected */}
           {comparedDestinations.length > 0 && (
-            <div className="mt-5">
+            <div className="mt-4">
               <button
                 type="button"
                 onClick={() => setIsComparisonOpen(true)}
@@ -196,10 +193,10 @@ export function Explore() {
             </div>
           )}
 
-          {/* Location Credit */}
-          <div className="absolute bottom-4 right-4 sm:bottom-5 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
+          {/* Accurate Verified Location Credit */}
+          <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 text-xs font-sans text-white/80 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 flex items-center gap-1.5 shadow-sm">
             <MapPin className="w-3.5 h-3.5 text-[#F0CF88]" />
-            <span>Amber Fort Ramparts, Jaipur, Rajasthan</span>
+            <span>Jal Mahal, Jaipur, Rajasthan</span>
           </div>
 
         </div>
@@ -248,7 +245,7 @@ export function Explore() {
                   <Link
                     key={cat.id}
                     to={cat.link}
-                    className="group relative h-28 sm:h-32 rounded-xl overflow-hidden border border-theme-border/80 shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-theme-primary"
+                    className="group relative h-28 sm:h-30 rounded-xl overflow-hidden border border-theme-border/80 shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-theme-primary"
                   >
                     <img
                       src={cat.image}
@@ -285,7 +282,7 @@ export function Explore() {
                       setSelectedInterest(cat.id);
                     }
                   }}
-                  className={`group relative h-28 sm:h-32 rounded-xl overflow-hidden border transition-all duration-300 hover:-translate-y-0.5 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-theme-primary ${
+                  className={`group relative h-28 sm:h-30 rounded-xl overflow-hidden border transition-all duration-300 hover:-translate-y-0.5 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-theme-primary ${
                     isSelected
                       ? "ring-2 ring-theme-primary border-theme-primary shadow-elevated"
                       : "border-theme-border/80 shadow-xs hover:shadow-md"
@@ -328,7 +325,7 @@ export function Explore() {
           </div>
         </section>
 
-        {/* 4. DESTINATION RESULTS GRID OR EMPTY STATE */}
+        {/* 4. DESTINATION RESULTS GRID (Consistent 3-column desktop layout for ALL cards) */}
         <section aria-label="Curated destination listings">
           {filteredDestinations.length === 0 ? (
             <EmptyState
@@ -339,11 +336,10 @@ export function Explore() {
             />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredDestinations.map((dest, idx) => (
+              {filteredDestinations.map((dest) => (
                 <DestinationCard 
                   key={dest.slug} 
                   destination={dest} 
-                  featured={idx === 0 && filteredDestinations.length > 3}
                   activeInterest={selectedInterest}
                   activeRegion={selectedRegion}
                 />
